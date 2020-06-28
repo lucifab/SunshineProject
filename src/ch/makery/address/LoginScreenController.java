@@ -9,9 +9,7 @@ import javafx.scene.control.TextField;
 import ch.makery.address.model.User;
 
 public class LoginScreenController extends Controller{
-	@FXML
 	private String username;
-	@FXML
 	private String password;
 	@FXML
 	private TextField userField;
@@ -51,7 +49,6 @@ public class LoginScreenController extends Controller{
 		 if (flag==true) {
 			 System.out.print("Hello,");
 		     System.out.println(userField.getText());
-		     mainApp.testing();
 		     mainApp.showMenu();
 		 }
 		 else {
