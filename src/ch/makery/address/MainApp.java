@@ -18,7 +18,6 @@ public class MainApp extends Application {
         this.window.setTitle("Sunshine Booking");
        
         showLoginScreen();
-        System.out.println("HEWWO");
     }
 	
     public void showLoginScreen() {
@@ -51,8 +50,8 @@ public class MainApp extends Application {
             window.setScene(scene);
             window.show();
             
-            //MenuController controller = loader.getController();
-            //controller.setMainApp(this);
+            MenuController controller = loader.getController();
+            controller.setMainApp(this);
             
         } catch (IOException e) {
             e.printStackTrace();
