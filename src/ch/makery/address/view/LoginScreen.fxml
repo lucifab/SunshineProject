@@ -46,7 +46,7 @@
                </HBox.margin>
             </Button>
             <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Forgot my Password" />
-            <Button mnemonicParsing="false" text="Sign on">
+            <Button mnemonicParsing="false" onAction="#clickSignOn" text="Sign on">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>

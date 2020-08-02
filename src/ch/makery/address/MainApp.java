@@ -65,9 +65,9 @@ public class MainApp extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/Booking.fxml"));
-            AnchorPane mainMenu = (AnchorPane) loader.load();
+            AnchorPane bookingScene = (AnchorPane) loader.load();
             
-            Scene scene = new Scene(mainMenu);
+            Scene scene = new Scene(bookingScene);
             window.setScene(scene);
             window.show();
 
@@ -78,9 +78,25 @@ public class MainApp extends Application {
             e.printStackTrace();
             }
         }
+    public void showSignOn() {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/SignOn.fxml"));
+            AnchorPane signOnScreen = (AnchorPane) loader.load();
+            
+            Scene scene = new Scene(signOnScreen);
+            window.setScene(scene);
+            window.show();
+
+            SignOnController controller = loader.getController();
+            controller.setMainApp(this);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+            }
+        }
     
-    
-    
+   
 	public Stage getPrimaryStage() {
 		//Allows other controllers/classes to grab the running window object
 		return window;

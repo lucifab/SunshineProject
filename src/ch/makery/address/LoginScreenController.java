@@ -43,6 +43,11 @@ public class LoginScreenController extends Controller{
 		 login(); 
 	    }
 	     
+	 public void clickSignOn(ActionEvent event) {
+		 event.consume();
+		 mainApp.showSignOn();
+	 }
+	 
 	 private void login() {
 		 System.out.println("Logging in...");
 		 boolean flag = validate();
