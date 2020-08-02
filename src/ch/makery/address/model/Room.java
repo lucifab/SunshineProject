@@ -9,6 +9,7 @@ public class Room {
 	private boolean breakfast;
 	private boolean dinner;
 	
+	
 	public String getLocation() {
 		return location;
 	}
