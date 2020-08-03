@@ -17,7 +17,7 @@
       </Label>
       <Label fx:id="DestnationField" layoutX="124.0" layoutY="85.0" text="Enter destination" />
       <Label fx:id="RtypeField" layoutX="124.0" layoutY="137.0" text="Room type" />
-      <ChoiceBox fx:id="RTypeBox" layoutX="265.0" layoutY="132.0" prefHeight="31.0" prefWidth="192.0" />
+      <ChoiceBox fx:id="RoomTypeBox" layoutX="265.0" layoutY="132.0" prefHeight="31.0" prefWidth="192.0" />
       <Label fx:id="DateField" layoutX="124.0" layoutY="190.0" text="Check-in" />
       <DatePicker fx:id="checkinPicker" layoutX="265.0" layoutY="185.0" onAction="#clickCheckinPicker" prefHeight="31.0" prefWidth="192.0" />
       <TextField fx:id="DestinationText" layoutX="265.0" layoutY="80.0" />
