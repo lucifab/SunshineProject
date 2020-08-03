@@ -1,7 +1,7 @@
 package ch.makery.address.model;
 
 public class User {
-	private String username;
+	public String username;
 	private String password;
 	
 	public User() {
@@ -11,6 +11,11 @@ public class User {
 	public User(String a, String b) {
 		this.username=a;
 		this.password=b;
+	}
+	
+	@Override
+	public String toString(){
+		return this.username+" "+this.password;
 	}
 
 	public String getUsername() {
@@ -28,4 +33,5 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 }

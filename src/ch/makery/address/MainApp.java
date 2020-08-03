@@ -2,7 +2,12 @@ package ch.makery.address;
 
 import java.io.IOException;
 
+import ch.makery.address.model.Date;
+import ch.makery.address.model.Room;
+import ch.makery.address.model.User;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -12,6 +17,18 @@ import javafx.stage.Stage;
 public class MainApp extends Application {
 
 	private Stage window;
+	protected User currentUser;
+	
+	private ObservableList<String> locations = FXCollections.observableArrayList("Macedonia","Babylonia","Camelot");
+	private ObservableList<Room> roomData = FXCollections.observableArrayList();
+
+	public User getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+	}
 
 	@Override
     public void start(Stage primaryStage) {
@@ -22,7 +39,7 @@ public class MainApp extends Application {
     }
 	
     public void showLoginScreen() {
-        try {
+        try {        	
         	//Get, load FXML document and create object
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/LoginScreen.fxml"));
@@ -37,7 +54,7 @@ public class MainApp extends Application {
             //Basically enables controller class to communicate w/ MainApp
             LoginScreenController controller = loader.getController();
             controller.setMainApp(this);
-
+            
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -45,7 +62,7 @@ public class MainApp extends Application {
     }
     
     public void showMenu() {
-        try {
+        try {        	
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/MainMenu.fxml"));
             VBox mainMenu = (VBox) loader.load();
@@ -57,22 +74,32 @@ public class MainApp extends Application {
             MenuController controller = loader.getController();
             controller.setMainApp(this);
             
+            
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void showBookings() {
+    public void showRoomSearch() {
         try {
+        	
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/Booking.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/RoomSearch.fxml"));
             AnchorPane bookingScene = (AnchorPane) loader.load();
+            
+            
+            //If you need to make changes to the layout according to 
+            //specific data you retrieved from the previous scene,
+            //change the stuff with the controller first and then
+            //you create the scene object!!
+            RoomSearchController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.initData(this.currentUser, locations);
             
             Scene scene = new Scene(bookingScene);
             window.setScene(scene);
             window.show();
 
-            BookingController controller = loader.getController();
-            controller.setMainApp(this);
+            
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -101,9 +128,11 @@ public class MainApp extends Application {
 		//Allows other controllers/classes to grab the running window object
 		return window;
 	}
-
-    public static void main(String[] args) {
+	
+    public static void main(String[] args) {    	
         launch(args);
     }
+
+	
 }
 

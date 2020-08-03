@@ -8,6 +8,8 @@ public class Room {
 	private int no;
 	private boolean breakfast;
 	private boolean dinner;
+	private Date from;
+	private Date to;
 	
 	
 	public String getLocation() {

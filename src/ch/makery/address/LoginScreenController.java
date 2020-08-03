@@ -18,8 +18,9 @@ public class LoginScreenController extends Controller{
 	User testUser = new User("fab","123");
 	
 	Button logButton;
-	
-	 public LoginScreenController() {
+
+
+	public LoginScreenController() {
 	 }
 	 
 	 
@@ -67,7 +68,9 @@ public class LoginScreenController extends Controller{
 		 String aux2 = testUser.getPassword();
  
 		 if((aux1.equals(this.username))&&(aux2.equals(this.password))) {
-			 
+			 System.out.println("Authenticating...");
+			 mainApp.setCurrentUser(this.testUser);
+			 System.out.println("Authenticated");
 			 return true;
 		 }
 		 else {
@@ -76,4 +79,5 @@ public class LoginScreenController extends Controller{
 		 }
 		 
 	 }
+	 
 }
