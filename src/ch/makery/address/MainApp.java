@@ -18,6 +18,8 @@ public class MainApp extends Application {
 
 	private Stage window;
 	protected User currentUser;
+	protected boolean flag = false;
+	//False means english, true means french
 	
 	private ObservableList<String> locations = FXCollections.observableArrayList("Macedonia","Babylonia","Camelot");
 	private ObservableList<Room> roomData = FXCollections.observableArrayList();
@@ -45,16 +47,16 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("view/LoginScreen.fxml"));
             VBox loginScreen = (VBox) loader.load();
             
-            //Create scene and set it as the previous FXML doc
-            Scene scene = new Scene(loginScreen);
-            window.setScene(scene);
-            window.show();
-            
-            //Link the running controller(from loader) to the controller class, set the mainApp from that controller to this
+          //Link the running controller(from loader) to the controller class, set the mainApp from that controller to this
             //Basically enables controller class to communicate w/ MainApp
             LoginScreenController controller = loader.getController();
             controller.setMainApp(this);
             
+            //Create scene and set it as the previous FXML doc
+            Scene scene = new Scene(loginScreen);
+            window.setScene(scene);
+            window.show();
+
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -67,12 +69,15 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("view/MainMenu.fxml"));
             VBox mainMenu = (VBox) loader.load();
             
+            MenuController controller = loader.getController();
+            controller.setMainApp(this);
+            if (flag==true)controller.langChange(flag);
+            
             Scene scene = new Scene(mainMenu);
             window.setScene(scene);
             window.show();
             
-            MenuController controller = loader.getController();
-            controller.setMainApp(this);
+            
             
             
         } catch (IOException e) {
@@ -94,6 +99,7 @@ public class MainApp extends Application {
             RoomSearchController controller = loader.getController();
             controller.setMainApp(this);
             controller.initData(this.currentUser, locations);
+            if (flag==true)controller.langChange();
             
             Scene scene = new Scene(bookingScene);
             window.setScene(scene);

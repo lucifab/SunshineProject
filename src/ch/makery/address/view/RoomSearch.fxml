@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.RoomSearchController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.RoomSearchController">
    <children>
       <SplitPane dividerPositions="0.5" layoutX="59.0" layoutY="40.0" prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -21,7 +21,7 @@
                <children>
                   <VBox layoutX="27.0" layoutY="74.0" prefHeight="250.0" prefWidth="262.0">
                      <children>
-                        <Label prefHeight="18.0" prefWidth="129.0" text="Choose specifications:" />
+                        <Label fx:id="specs" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="129.0" text="Choose specifications:" />
                         <GridPane prefHeight="180.0" prefWidth="225.0">
                            <columnConstraints>
                               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="94.4000244140625" minWidth="10.0" prefWidth="64.0" />
@@ -34,13 +34,13 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Label text="Location:" />
+                              <Label fx:id="locationTable" maxWidth="-Infinity" text="Location:" />
                               <ComboBox fx:id="location" prefWidth="150.0" GridPane.columnIndex="1" />
-                              <Label text="Price:" GridPane.rowIndex="1" />
+                              <Label maxWidth="-Infinity" text="Price:" GridPane.rowIndex="1" />
                               <ComboBox fx:id="price" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label text="From:" GridPane.rowIndex="2" />
+                              <Label fx:id="fromTable" maxWidth="-Infinity" text="From:" GridPane.rowIndex="2" />
                               <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label text="To:" GridPane.rowIndex="3" />
+                              <Label fx:id="toTable" maxWidth="-Infinity" text="To:" GridPane.rowIndex="3" />
                               <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
@@ -48,13 +48,13 @@
                   </VBox>
                   <ButtonBar layoutX="67.0" layoutY="344.0" prefHeight="40.0" prefWidth="174.0">
                     <buttons>
-                      <Button mnemonicParsing="false" onAction="#onBackButton" text="Back" />
-                        <Button mnemonicParsing="false" onAction="#onNextButton" text="Next" />
+                      <Button fx:id="back" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onBackButton" text="Back" />
+                        <Button fx:id="next" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onNextButton" text="Next" />
                     </buttons>
                   </ButtonBar>
                   <VBox layoutX="25.0" layoutY="24.0" prefHeight="40.0" prefWidth="67.0">
                      <children>
-                        <Label text="Welcome," />
+                        <Label fx:id="welcome" maxWidth="-Infinity" text="Welcome," />
                         <Label fx:id="userID" text="Username" />
                      </children>
                   </VBox>
