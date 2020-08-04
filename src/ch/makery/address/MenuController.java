@@ -1,4 +1,6 @@
 package ch.makery.address;
+//import javax.swing.table.TableColumn;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -7,6 +9,7 @@ import javafx.scene.control.Label;
 
 public class MenuController extends Controller {
 	
+	//FXML values
 	@FXML
 	Label title;
 	@FXML
@@ -23,6 +26,22 @@ public class MenuController extends Controller {
 	Button logOff;
 	@FXML
 	Button setting;
+	/*
+	 * @FXML TableColumn locationTable;
+	 * 
+	 * @FXML TableColumn roomTypeTable;
+	 * 
+	 * @FXML TableColumn roomNoTable;
+	 * 
+	 * @FXML TableColumn noBedroomTable;
+	 * 
+	 * @FXML TableColumn noWashTable;
+	 * 
+	 * @FXML TableColumn breakfast;
+	 * 
+	 * @FXML TableColumn dinner;
+	 * 
+	 */
 	
 	public void langChange(boolean flag) {
 		System.out.println("Executing language change...");

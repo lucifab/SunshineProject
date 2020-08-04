@@ -42,6 +42,8 @@ public class RoomSearchController extends  Controller{
 	Button back;
 	@FXML
 	Button next;
+	@FXML
+	Button search;
 	
 	
 	
@@ -66,6 +68,7 @@ public class RoomSearchController extends  Controller{
 			toTable.setText("À");
 			back.setText("Arrière");
 			next.setText("Prochain");
+			search.setText("Chercher");
 	}
 	
 	
@@ -78,5 +81,9 @@ public class RoomSearchController extends  Controller{
 	public void onNextButton(ActionEvent event) {
 		event.consume();
 		System.out.println(currentUser);
+	}
+	public void onSearchButton(ActionEvent event) {
+		event.consume();
+		System.out.println("Searching!\nPlease Wait...");
 	}
 }

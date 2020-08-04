@@ -46,9 +46,10 @@
                         </GridPane>
                      </children>
                   </VBox>
-                  <ButtonBar layoutX="67.0" layoutY="344.0" prefHeight="40.0" prefWidth="174.0">
+                  <ButtonBar layoutX="24.0" layoutY="344.0" prefHeight="40.0" prefWidth="174.0">
                     <buttons>
                       <Button fx:id="back" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onBackButton" text="Back" />
+                        <Button fx:id="search" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onSearchButton" text="Search" />
                         <Button fx:id="next" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onNextButton" text="Next" />
                     </buttons>
                   </ButtonBar>
