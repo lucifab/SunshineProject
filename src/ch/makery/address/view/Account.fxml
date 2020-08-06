@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="241.0" layoutY="14.0" text="Account Details">
          <font>
@@ -27,9 +26,10 @@
       <TextField fx:id="CardnameText" layoutX="274.0" layoutY="211.0" />
       <Label fx:id="CardnumField" layoutX="143.0" layoutY="262.0" text="Card number" />
       <TextField fx:id="CardNumText" layoutX="274.0" layoutY="257.0" />
-      <Label fx:id="ExpiryField" layoutX="145.0" layoutY="302.0" text="Expiration date" />
-      <DatePicker fx:id="ExpiryPicker" layoutX="274.0" layoutY="297.0" onAction="#clickonExpiryPicker" prefHeight="31.0" prefWidth="187.0" />
-      <Button fx:id="AddButton" layoutX="398.0" layoutY="344.0" mnemonicParsing="false" onAction="#clickAddButton" prefHeight="31.0" prefWidth="63.0" text="Add" />
+      <Label fx:id="ExpiryField" layoutX="147.0" layoutY="342.0" text="Expiration date" />
+      <DatePicker fx:id="ExpiryPicker" layoutX="274.0" layoutY="342.0" onAction="#clickonExpiryPicker" prefHeight="31.0" prefWidth="187.0" />
+      <Button fx:id="AddButton" layoutX="398.0" layoutY="395.0" mnemonicParsing="false" onAction="#clickAddButton" prefHeight="31.0" prefWidth="63.0" text="Add" />
+      <Label fx:id="CVCField" layoutX="145.0" layoutY="304.0" text="Enter CVC code" />
+      <TextField fx:id="EnterCVCField" layoutX="274.0" layoutY="299.0" />
    </children>
 </AnchorPane>
-
