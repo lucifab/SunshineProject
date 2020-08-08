@@ -14,6 +14,15 @@ public class Date {
 		this.year=y;
 	}
 	
+	
+	//Copier
+	public Date(Date aux) {
+		this.day=aux.day;
+		this.month=aux.month;
+		this.year=aux.year;
+	}
+	
+	
 	//Getters and Setters
 	public int getDay() {
 		return day;
@@ -61,7 +70,14 @@ public class Date {
 			ans=false;
 		}
 		return ans;
-	};
+	}
 	
+	@Override
+	public String toString() {
+		String str = this.day+"/"+this.month+"/"+this.year;
+		return str;
+	}
+
+
 	
 }

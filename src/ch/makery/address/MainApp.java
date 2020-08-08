@@ -3,6 +3,7 @@ package ch.makery.address;
 import java.io.IOException;
 
 import ch.makery.address.model.Date;
+import ch.makery.address.model.Reservation;
 import ch.makery.address.model.Room;
 import ch.makery.address.model.User;
 import javafx.application.Application;
@@ -15,15 +16,29 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
-
-	private Stage window;
-	protected User currentUser;
-	protected boolean flag = false;
-	//False means english, true means french
 	
-	private ObservableList<String> locations = FXCollections.observableArrayList("Macedonia","Babylonia","Camelot");
-	private ObservableList<Room> roomData = FXCollections.observableArrayList();
+	//PRIYA CONNECTION SHENANIGANS GO HERE
+	
+	//JDBC
+	
+	
+	
+	
+	
+	//JAVAFX 
+	private Stage window;
+	
+	//DATA FOR RUNNING PROGRAM
+	protected User currentUser;
+	protected boolean flag = false;//False means english, true means french
+	//Lists that will be retrieved  and stored from the database
+	protected ObservableList<String> locations = FXCollections.observableArrayList("Macedonia","Babylonia","Camelot");
+	protected static ObservableList<Room> roomData = FXCollections.observableArrayList();
+	protected static ObservableList<Reservation> reservationData = FXCollections.observableArrayList();
+	//TestingValues
+	static Date aux = new Date(10,10,2020);
 
+	//METHODS FOR RETRIEVING SAID DATA
 	public User getCurrentUser() {
 		return currentUser;
 	}
@@ -31,7 +46,9 @@ public class MainApp extends Application {
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
 	}
-
+	
+	
+	//MAIN APP EXECUTION
 	@Override
     public void start(Stage primaryStage) {
         this.window = primaryStage;
@@ -47,7 +64,7 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("view/LoginScreen.fxml"));
             VBox loginScreen = (VBox) loader.load();
             
-          //Link the running controller(from loader) to the controller class, set the mainApp from that controller to this
+            //Link the running controller(from loader) to the controller class, set the mainApp from that controller to this
             //Basically enables controller class to communicate w/ MainApp
             LoginScreenController controller = loader.getController();
             controller.setMainApp(this);
@@ -70,16 +87,12 @@ public class MainApp extends Application {
             VBox mainMenu = (VBox) loader.load();
             
             MenuController controller = loader.getController();
-            controller.setMainApp(this);
-            if (flag==true)controller.langChange(flag);
+            controller.init(this); //Initializes all the things needed in scene controller (table, connection to mainApp,etc)
             
             Scene scene = new Scene(mainMenu);
             window.setScene(scene);
             window.show();
-            
-            
-            
-            
+     
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,9 +110,8 @@ public class MainApp extends Application {
             //change the stuff with the controller first and then
             //you create the scene object!!
             RoomSearchController controller = loader.getController();
-            controller.setMainApp(this);
-            controller.initData(this.currentUser, locations);
-            if (flag==true)controller.langChange();
+            controller.init(this);
+            
             
             Scene scene = new Scene(bookingScene);
             window.setScene(scene);
@@ -135,8 +147,21 @@ public class MainApp extends Application {
 		return window;
 	}
 	
-    public static void main(String[] args) {    	
-        launch(args);
+    public static void main(String[] args) { 
+    	
+    	//Dummy data for testing
+    	roomData.add(new Room("Macedonia","VIP",1,2,1001,100));
+        roomData.add(new Room("Babylonia","VIP",2,3,1002,100));
+        roomData.add(new Room("Camelot","Normal",1,2,1003,100));
+        roomData.add(new Room("Okeanos","Normal",1,2,1004,100));
+        
+        reservationData.add(new Reservation("1283S","Okeanos","Normal",400,1,2,1004,aux,aux));
+        reservationData.add(new Reservation("5813F","Babylonia","VIP",1400,4,3,3024,aux,aux));
+        
+        //Launch app.
+    	launch(args);
+        
+        
     }
 
 	

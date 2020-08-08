@@ -36,8 +36,8 @@
                            <children>
                               <Label fx:id="locationTable" maxWidth="-Infinity" text="Location:" />
                               <ComboBox fx:id="location" prefWidth="150.0" GridPane.columnIndex="1" />
-                              <Label maxWidth="-Infinity" text="Price:" GridPane.rowIndex="1" />
-                              <ComboBox fx:id="price" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label fx:id="bedTable" maxWidth="-Infinity" text="Bedrooms:" GridPane.rowIndex="1" />
+                              <ComboBox fx:id="bedroomNo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <Label fx:id="fromTable" maxWidth="-Infinity" text="From:" GridPane.rowIndex="2" />
                               <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <Label fx:id="toTable" maxWidth="-Infinity" text="To:" GridPane.rowIndex="3" />
@@ -63,10 +63,11 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <TableView prefHeight="398.4" prefWidth="316.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="roomTable" prefHeight="398.4" prefWidth="316.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="Room Type" />
-                      <TableColumn prefWidth="75.0" text="Price" />
+                      <TableColumn fx:id="packageTable" prefWidth="75.0" text="Package" />
+                        <TableColumn fx:id="washTable" prefWidth="75.0" text="Washrooms" />
+                      <TableColumn fx:id="priceTable" prefWidth="75.0" text="Price" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
