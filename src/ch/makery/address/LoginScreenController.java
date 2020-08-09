@@ -15,7 +15,7 @@ public class LoginScreenController extends Controller{
 	private TextField userField;
 	@FXML
 	private PasswordField passField;
-	User testUser = new User("fab","123");
+	User testUser = new User("dhan","123");
 	
 	Button logButton;
 
@@ -53,6 +53,7 @@ public class LoginScreenController extends Controller{
 		 System.out.println("Logging in...");
 		 boolean flag = validate();
 		 if (flag==true) {
+			 mainApp.connect("root", "");
 			 System.out.print("Hello,");
 		     System.out.println(userField.getText());
 		     mainApp.showMenu();

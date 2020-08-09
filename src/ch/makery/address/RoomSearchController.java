@@ -1,5 +1,9 @@
 package ch.makery.address;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import ch.makery.address.model.Date;
 import ch.makery.address.model.Reservation;
 import ch.makery.address.model.Room;
 import ch.makery.address.model.User;
@@ -87,6 +91,7 @@ public class RoomSearchController extends  Controller{
 		bedroomNo.getSelectionModel().select(1);
 		
 		//Populates table before search
+		fetchRooms();
 		roomTable.setItems(mainApp.roomData);
 		populate();
 	}
@@ -95,6 +100,41 @@ public class RoomSearchController extends  Controller{
         packageTable.setCellValueFactory(cellData -> cellData.getValue().getPropertyType());
         washTable.setCellValueFactory(cellData -> cellData.getValue().getPropertyBathno().asObject());
         priceTable.setCellValueFactory(cellData -> cellData.getValue().getPropertyPrice().asObject());
+	}
+	
+	public void fetchRooms() {
+		System.out.println("\n\nCreating statement...\n\n");
+    	try {
+    		//Clearing room Data table... (to update it)
+    		if (!mainApp.roomData.isEmpty()) {
+    			System.out.println("Clearing old table...");
+    			mainApp.roomData.clear();
+    		}
+    		
+    		//Interacting with database
+			mainApp.stmt = mainApp.conn.createStatement();
+			String sql;
+	    	sql = "SELECT * FROM `availablerooms`";
+	    	System.out.println("Query:"+sql);
+	    	ResultSet rs = mainApp.stmt.executeQuery(sql);
+	    	//Extracting data from database
+	    	while(rs.next()){
+	    		//Retrieve by column name
+	    		String location = rs.getString("roomLocation");
+	    		String rType = rs.getString("roomType");
+	    		double price = rs.getDouble("Price");
+	    		int roomNo = rs.getInt("roomNo");
+	    		int noBed = rs.getInt("noOfBedrooms");
+	    		int noWash = rs.getInt("noOfWashrooms");
+
+	    		//Add values to reservation table
+	    		mainApp.roomData.add(new Room(location,rType,noWash,noBed,roomNo,price));
+	    		
+	    	}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void langChange() {

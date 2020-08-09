@@ -202,6 +202,8 @@ select * from account;
 create view reservationconfirmation as(select loginDetails.userName, reservation.packagename,reservation.foodid,reservation.roomno,reservation.checkin,reservation.checkout, reservation.adults,reservation.children from logindetails inner join reservation on logindetails.username = reservation.username);
 select * from reservationConfirmation;
 
+create view allBookings as (SELECT * FROM reservation NATURAL JOIN rooms);
+create view allRooms as (SELECT * FROM packages NATURAL JOIN rooms);
 
 
 drop table feedback;

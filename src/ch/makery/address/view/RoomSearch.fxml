@@ -19,7 +19,7 @@
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <VBox layoutX="27.0" layoutY="74.0" prefHeight="250.0" prefWidth="262.0">
+                  <VBox layoutX="27.0" layoutY="74.0" prefHeight="250.0" prefWidth="262.0" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="74.0">
                      <children>
                         <Label fx:id="specs" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="18.0" prefWidth="129.0" text="Choose specifications:" />
                         <GridPane prefHeight="180.0" prefWidth="225.0">
@@ -46,14 +46,14 @@
                         </GridPane>
                      </children>
                   </VBox>
-                  <ButtonBar layoutX="24.0" layoutY="344.0" prefHeight="40.0" prefWidth="174.0">
+                  <ButtonBar layoutX="24.0" layoutY="344.0" prefHeight="40.0" prefWidth="174.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="24.0">
                     <buttons>
                       <Button fx:id="back" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onBackButton" text="Back" />
                         <Button fx:id="search" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onSearchButton" text="Search" />
                         <Button fx:id="next" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onNextButton" text="Next" />
                     </buttons>
                   </ButtonBar>
-                  <VBox layoutX="25.0" layoutY="24.0" prefHeight="40.0" prefWidth="67.0">
+                  <VBox layoutX="25.0" layoutY="24.0" prefHeight="40.0" prefWidth="67.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="24.0">
                      <children>
                         <Label fx:id="welcome" maxWidth="-Infinity" text="Welcome," />
                         <Label fx:id="userID" text="Username" />

@@ -14,6 +14,13 @@ public class Date {
 		this.year=y;
 	}
 	
+	public Date(int full) {
+		this.day=full%100;
+		this.month=(full%10000-this.day)/100;
+		this.year=(full-this.month-this.day)/10000;
+		System.out.println(this);
+	}
+	
 	
 	//Copier
 	public Date(Date aux) {
@@ -41,6 +48,11 @@ public class Date {
 	}
 	public void setYear(int year) {
 		this.year = year;
+	}
+	
+	public int toInt() {
+		int res = this.year*1000+this.month*100+this.day;
+		return res;
 	}
 	
 	public boolean isThisAfter(int d,int m, int y) {

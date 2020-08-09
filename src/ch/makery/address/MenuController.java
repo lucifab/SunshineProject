@@ -1,6 +1,10 @@
 package ch.makery.address;
 //import javax.swing.table.TableColumn;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
 import ch.makery.address.model.Date;
 import ch.makery.address.model.Reservation;
 import javafx.event.ActionEvent;
@@ -66,11 +70,55 @@ public class MenuController extends Controller {
     	
     	if (mainApp.flag==true)langChange(mainApp.flag); //Changes language if needed
     	
+    	fetchReservation();
+    	
     	roomTable.setItems(mainApp.reservationData); //Links table to stuff in reservationData
     	populate(); //Populates table
     	
     	roomTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selection=newValue);
+    }
+    
+    public void fetchReservation() {
+    	
+    	//This method fetches the proper reservations from the database and populates the reservationData table
+    	//from the mainApp
+    	
+    	System.out.println("\n\nCreating statement...\n\n");
+    	try {
+    		//Clearing reservation table...
+    		if (!mainApp.reservationData.isEmpty()) {
+    			System.out.println("Clearing old table...");
+    			mainApp.reservationData.clear();
+    		}
+    		
+    		//Interacting with database
+			mainApp.stmt = mainApp.conn.createStatement();
+			String sql;
+	    	sql = "SELECT * FROM allbookings WHERE `username`=\""+mainApp.currentUser.username+"\"";
+	    	System.out.println("Query:"+sql);
+	    	ResultSet rs = mainApp.stmt.executeQuery(sql);
+	    	//Extracting data from database
+	    	while(rs.next()){
+	    		//Retrieve by column name
+	    		String ID = ""+rs.getInt("reservationID");
+	    		String location = rs.getString("roomLocation");
+	    		String packageName = rs.getString("PackageName");
+	    		double price = rs.getDouble("Price");
+	    		int roomNo = rs.getInt("roomNo");
+	    		int noBed = rs.getInt("noOfBedrooms");
+	    		int noWash = rs.getInt("noOfWashrooms");
+	    		Date from = new  Date(rs.getInt("checkIn"));
+	    		Date to = new Date(rs.getInt("checkOut"));
+
+	    		//Add values to reservation table
+	    		mainApp.reservationData.add(new Reservation(ID,location,packageName,price,noWash,noBed,roomNo,from,to));
+	    		
+	    	}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
     protected void populate() {

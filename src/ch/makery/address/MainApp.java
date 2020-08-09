@@ -14,16 +14,22 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.sql.*;
 
 public class MainApp extends Application {
 	
-	//PRIYA CONNECTION SHENANIGANS GO HERE
-	
 	//JDBC
+	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	static final String DB_URL = "jdbc:mysql://localhost:3306/sunshinehotel";
 	
+	// Database credentials
+	static final String USER = "root";
+	static final String PASS = "";
 	
+	Connection conn = null;
+	Statement stmt = null;
 	
-	
+	boolean dc = false;
 	
 	//JAVAFX 
 	private Stage window;
@@ -141,7 +147,32 @@ public class MainApp extends Application {
             }
         }
     
-   
+    public void connect(String username, String password) {
+    	try{
+    		Class.forName("com.mysql.jdbc.Driver");
+    		System.out.println("Connecting to database...");
+    		this.conn = DriverManager.getConnection(DB_URL,USER,PASS);
+    		System.out.println("Connection successful!");
+    	}catch(SQLException se){
+    		//Handle errors for JDBC
+    		se.printStackTrace();
+    	}catch(Exception e){
+    		//Handle errors for Class.forName
+    		e.printStackTrace();
+    	}finally{
+    		//finally block used to close resources
+    		try{
+    			if(dc==true) {
+    				System.out.println("Closing connection.");
+    				stmt.close();
+    				};
+    		}catch(SQLException se) {
+    			se.printStackTrace();
+    		}
+    	}
+    }
+
+
 	public Stage getPrimaryStage() {
 		//Allows other controllers/classes to grab the running window object
 		return window;
