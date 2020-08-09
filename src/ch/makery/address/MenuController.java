@@ -96,7 +96,7 @@ public class MenuController extends Controller {
 			mainApp.stmt = mainApp.conn.createStatement();
 			String sql;
 	    	sql = "SELECT * FROM allbookings WHERE `username`=\""+mainApp.currentUser.username+"\"";
-	    	System.out.println("Query:"+sql);
+	    	System.out.println("Fetch Reservation Query:"+sql);
 	    	ResultSet rs = mainApp.stmt.executeQuery(sql);
 	    	//Extracting data from database
 	    	while(rs.next()){
@@ -197,8 +197,25 @@ public class MenuController extends Controller {
 	public void onCancel(ActionEvent event) {
 		event.consume();
 		System.out.println("Removing...");
-		mainApp.reservationData.remove(selection);
+		try {
+    		System.out.println("\n\nCreating statement...\n\n");
+    		//Interacting with database
+			mainApp.stmt = mainApp.conn.createStatement();
+			String sql;
+	    	sql = "DELETE FROM `reservation` WHERE `reservationID`="+selection.getID();
+	    	System.out.println("Query:"+sql);
+	    	mainApp.stmt.executeUpdate(sql);
+	    	//Extracting data from database
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		System.out.println("Selection removed.\n");
+		
+		//Now to update the table...
+		
+		fetchReservation();
 		populate();
 	}
 	

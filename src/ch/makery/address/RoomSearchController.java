@@ -83,6 +83,7 @@ public class RoomSearchController extends  Controller{
 		userID.setText(this.currentUser.username);
 		
 		//Populates ComboBox for locations
+		fetchLocations();
 		location.setItems(mainApp.locations);
 		location.getSelectionModel().select(1);
 		
@@ -100,6 +101,33 @@ public class RoomSearchController extends  Controller{
         packageTable.setCellValueFactory(cellData -> cellData.getValue().getPropertyType());
         washTable.setCellValueFactory(cellData -> cellData.getValue().getPropertyBathno().asObject());
         priceTable.setCellValueFactory(cellData -> cellData.getValue().getPropertyPrice().asObject());
+	}
+	
+	public void fetchLocations() {
+    	try {
+    		//Clearing room Data table... (to update it)
+    		if (!mainApp.locations.isEmpty()) {
+    			System.out.println("Clearing old table...");
+    			mainApp.locations.clear();
+    		}
+    		System.out.println("\n\nCreating statement...\n\n");
+    		//Interacting with database
+			mainApp.stmt = mainApp.conn.createStatement();
+			String sql;
+	    	sql = "SELECT DISTINCT roomLocation FROM `rooms`";
+	    	System.out.println("Fetch Room Query:"+sql);
+	    	ResultSet rs = mainApp.stmt.executeQuery(sql);
+	    	//Extracting data from database
+	    	while(rs.next()){
+	    		//Retrieve by column name
+	    		String location = rs.getString("roomLocation");
+	    		//Add values to location table
+	    		mainApp.locations.add(location);
+	    	}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public void fetchRooms() {
