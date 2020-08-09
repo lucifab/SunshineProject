@@ -129,6 +129,34 @@ public class MainApp extends Application {
             e.printStackTrace();
             }
         }
+    
+    public void showFinalBooking() {
+        try {
+        	
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/RoomSearch.fxml"));
+            AnchorPane bookingScene = (AnchorPane) loader.load();
+            
+            
+            //If you need to make changes to the layout according to 
+            //specific data you retrieved from the previous scene,
+            //change the stuff with the controller first and then
+            //you create the scene object!!
+            RoomSearchController controller = loader.getController();
+            controller.init(this);
+            
+            
+            Scene scene = new Scene(bookingScene);
+            window.setScene(scene);
+            window.show();
+
+            
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+            }
+        }
+    
     public void showSignOn() {
         try {
             FXMLLoader loader = new FXMLLoader();

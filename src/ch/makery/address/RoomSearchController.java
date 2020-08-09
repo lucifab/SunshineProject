@@ -16,7 +16,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.event.ActionEvent;
 
 public class RoomSearchController extends  Controller{
 	
@@ -25,7 +24,7 @@ public class RoomSearchController extends  Controller{
 	
 	//Auxiliary Data
 	ObservableList<String> aux = FXCollections.observableArrayList("1","2","3","4");
-	
+	Room selection;
 	//FXML Labels
 	
 	//Data
@@ -95,7 +94,12 @@ public class RoomSearchController extends  Controller{
 		fetchRooms();
 		roomTable.setItems(mainApp.roomData);
 		populate();
-	}
+		
+		//Again, a listener for the table
+		roomTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> selection=newValue);
+    }
+	
 	
 	public void populate() {
         packageTable.setCellValueFactory(cellData -> cellData.getValue().getPropertyType());
@@ -189,18 +193,58 @@ public class RoomSearchController extends  Controller{
 	public void onNextButton(ActionEvent event) {
 		event.consume();
 		System.out.println(currentUser);
+		System.out.println(selection);
+		
+		//showFinalBooking(selection);
+		
 	}
 	public void onSearchButton(ActionEvent event) {
 		event.consume();
 		System.out.println("Searching!\nPlease Wait...");
+		System.out.println("\n\nCreating statement...\n\n");
+    	try {
+    		//Clearing room table...
+    		if (!mainApp.roomData.isEmpty()) {
+    			System.out.println("Clearing old table...");
+    			mainApp.roomData.clear();
+    		}
+    		
+    		//Interacting with database
+			mainApp.stmt = mainApp.conn.createStatement();
+			String sql;
+			
+	    	sql = statementBuilder();
+	    	
+	    	System.out.println("SEARCH Query:"+sql);
+	    	
+	    	ResultSet rs = mainApp.stmt.executeQuery(sql);
+	    	//Extracting data from database
+	    	while(rs.next()){
+	    		//Retrieve by column name
+	    		String location = rs.getString("roomLocation");
+	    		String rType = rs.getString("roomType");
+	    		double price = rs.getDouble("Price");
+	    		int roomNo = rs.getInt("roomNo");
+	    		int noBed = rs.getInt("noOfBedrooms");
+	    		int noWash = rs.getInt("noOfWashrooms");
+
+	    		//Add values to reservation table
+	    		mainApp.roomData.add(new Room(location,rType,noWash,noBed,roomNo,price));
+	    		
+	    		//After all the data is fetched, populate the table!
+	    		populate();
+	    	}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	//builds statement query according to user specifications
+	public String statementBuilder() {
+		String str = "SELECT * FROM `availablerooms`";
+		str = str+" WHERE roomLocation=\""+location.getValue()+"\" AND NoOfBedrooms="+bedroomNo.getValue();
 		
-		//PRIYA GRAB SHIT FROM DATABASE HERE
-		//Use connection & statements to retrieve the correct result
-		//ObservableList<Rooms> ObservableList_From_Database = FXCollections.observableArrayList(database_data);
-		
-		
-		//POPULATE TABLE WITH NEW SEARCH RESULTS....
-		//roomTable.setItems(ObservableList_From_Database)
-		//populate();
+		return str;
 	}
 }

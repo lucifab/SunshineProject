@@ -75,6 +75,7 @@ public class MenuController extends Controller {
     	roomTable.setItems(mainApp.reservationData); //Links table to stuff in reservationData
     	populate(); //Populates table
     	
+    	//This is a listener to check if the user has selected something from the table
     	roomTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> selection=newValue);
     }
