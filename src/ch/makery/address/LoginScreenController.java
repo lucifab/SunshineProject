@@ -3,6 +3,7 @@ package ch.makery.address;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -20,6 +21,8 @@ public class LoginScreenController extends Controller{
 	private TextField userField;
 	@FXML
 	private PasswordField passField;
+	@FXML
+	private Label infoForUser;
 	
 	Button logButton;
 
@@ -61,11 +64,7 @@ public class LoginScreenController extends Controller{
 			 System.out.print("Hello,");
 		     System.out.println(userField.getText());
 		     mainApp.showMenu();
-		 }
-		 else {
-			 System.out.println("Username or password wrong.");
-		 }
-		 
+		 }		 
 	 }
 	 
 	 private boolean validate() {
@@ -97,20 +96,21 @@ public class LoginScreenController extends Controller{
 		System.out.println("DB:"+aux1+"\nPass:"+aux2);
 		
 		if((this.username==null)||(this.password)==null) {
-			System.out.println("Please fill the required fields.");
+			infoForUser.setText("Please fill the required fields.");
 			return false;
 		}
 		else if(aux1==null){
-			
+			infoForUser.setText("User does not exist.");
 			return false;
 		}
 		else if((aux1.equals(this.username))&&(aux2.equals(this.password))) {
-			 System.out.println("Authenticating...");
+			infoForUser.setText("Authenticating...");
 			 mainApp.setCurrentUser(new User(this.username,this.password));
 			 System.out.println("Authenticated");
 			 return true;
 		 }
 		 else {
+			 infoForUser.setText("Username or password wrong.");
 			 return false;
 		 }
 		 

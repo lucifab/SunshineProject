@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+   <children>
+      <SplitPane dividerPositions="0.45297805642633227" layoutX="178.0" layoutY="142.0" prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox alignment="TOP_CENTER" layoutX="118.0" layoutY="27.0" prefHeight="398.4" prefWidth="286.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label fx:id="roomInfoDes" alignment="CENTER" prefHeight="59.0" prefWidth="145.0" text="Your room information" />
+                        <HBox alignment="CENTER" prefHeight="34.0" prefWidth="286.0">
+                           <children>
+                              <Label fx:id="roomNumDes" text="Room Number:">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="roomNum" text="roomNo" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="28.0" prefWidth="286.0">
+                           <children>
+                              <Label fx:id="locationDes" text="Location:">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="location" text="location" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="286.0">
+                           <children>
+                              <Label fx:id="typeDes" text="Type:">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="type" text="type" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="28.0" prefWidth="286.0">
+                           <children>
+                              <Label fx:id="numBedDes" text="Number of Bedrooms:">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="numBed" text="x rooms" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="286.0">
+                           <children>
+                              <Label fx:id="numWashDes" text="Number of Washrooms:">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="numWash" text="x washrooms" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="286.0">
+                           <children>
+                              <Label fx:id="fromDes" text="From:">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="from" text="date" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="286.0">
+                           <children>
+                              <Label fx:id="toDes" text="To:">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="to" text="date" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="27.0" prefWidth="286.0">
+                           <children>
+                              <Label fx:id="priceDes" text="Price:">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="price" text="date" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="398.4" prefWidth="329.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label fx:id="payInfo" prefHeight="59.0" prefWidth="145.0" text="Insert Payment Information" />
+                        <HBox alignment="CENTER" prefHeight="46.0" prefWidth="640.0">
+                           <children>
+                              <Label fx:id="payTypeDes" text="Payment Type: ">
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <ComboBox fx:id="payType" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="46.0" prefWidth="640.0">
+                           <children>
+                              <Label fx:id="CardNumDes" text="Card Number:">
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="cardNum" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="46.0" prefWidth="640.0">
+                           <children>
+                              <Label text="CCV:">
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="ccv" />
+                           </children>
+                           <padding>
+                              <Insets left="50.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="46.0" prefWidth="640.0">
+                           <children>
+                              <Label fx:id="NameOnCardDes" text="Name on Card:">
+                                 <padding>
+                                    <Insets right="10.0" />
+                                 </padding>
+                              </Label>
+                              <TextField fx:id="nameOnCard" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="back" mnemonicParsing="false" text="Back">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="confirm" mnemonicParsing="false" text="Confirm" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

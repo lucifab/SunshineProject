@@ -59,6 +59,7 @@
             <Insets />
          </VBox.margin>
       </HBox>
+      <Label fx:id="infoForUser" />
   </children>
    <padding>
       <Insets top="10.0" />
