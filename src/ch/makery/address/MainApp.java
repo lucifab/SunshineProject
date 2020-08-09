@@ -130,23 +130,23 @@ public class MainApp extends Application {
             }
         }
     
-    public void showFinalBooking() {
+    public void showFinalBooking(Room selection) {
         try {
         	
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/RoomSearch.fxml"));
-            AnchorPane bookingScene = (AnchorPane) loader.load();
+            loader.setLocation(MainApp.class.getResource("view/FinalBooking.fxml"));
+            AnchorPane finalBookScene = (AnchorPane) loader.load();
             
             
             //If you need to make changes to the layout according to 
             //specific data you retrieved from the previous scene,
             //change the stuff with the controller first and then
             //you create the scene object!!
-            RoomSearchController controller = loader.getController();
-            controller.init(this);
+            FinalBookingController controller = loader.getController();
+            controller.init(this, selection);
             
             
-            Scene scene = new Scene(bookingScene);
+            Scene scene = new Scene(finalBookScene);
             window.setScene(scene);
             window.show();
 

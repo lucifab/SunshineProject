@@ -8,6 +8,14 @@ public class Date {
 	private int year;
 	
 	//Constructor
+	public Date() {
+		//default constructor for testing
+		this.year=2020;
+		this.month=8;
+		this.day=12;
+	}
+	
+	
 	public Date(int d, int m, int y) {
 		this.day=d;
 		this.month=m;

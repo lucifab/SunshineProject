@@ -66,7 +66,7 @@ public class MenuController extends Controller {
     protected void init(MainApp main) {
     	//This method executes all the things necessary for initialization of scene.
     	
-    	this.mainApp = main; //Connects controller to mainApp
+    	this.setMainApp(main); //Connects controller to mainApp
     	
     	if (mainApp.flag==true)langChange(mainApp.flag); //Changes language if needed
     	

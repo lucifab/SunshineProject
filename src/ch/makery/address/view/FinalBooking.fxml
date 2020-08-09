@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.FinalBookingController">
    <children>
       <SplitPane dividerPositions="0.45297805642633227" layoutX="178.0" layoutY="142.0" prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -154,14 +153,15 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                            <children>
-                              <Button fx:id="back" mnemonicParsing="false" text="Back">
+                              <Button fx:id="back" mnemonicParsing="false" onAction="#onBackButton" text="Back">
                                  <HBox.margin>
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Button>
-                              <Button fx:id="confirm" mnemonicParsing="false" text="Confirm" />
+                              <Button fx:id="confirm" mnemonicParsing="false" onAction="#onConfirmButton" text="Confirm" />
                            </children>
                         </HBox>
+                        <Label fx:id="errorMsg" />
                      </children>
                   </VBox>
                </children>

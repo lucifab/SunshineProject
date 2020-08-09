@@ -72,7 +72,7 @@ public class RoomSearchController extends  Controller{
 	public void init(MainApp main) {
 		
 		//Connects mainApp to this controller
-		this.mainApp=main;
+		this.setMainApp(main);
 		
 		//Changes language if needed
 		if (mainApp.flag==true)langChange();
@@ -195,7 +195,8 @@ public class RoomSearchController extends  Controller{
 		System.out.println(currentUser);
 		System.out.println(selection);
 		
-		//showFinalBooking(selection);
+		if(selection!=null) {
+		mainApp.showFinalBooking(this.selection);}
 		
 	}
 	public void onSearchButton(ActionEvent event) {
@@ -213,6 +214,7 @@ public class RoomSearchController extends  Controller{
 			mainApp.stmt = mainApp.conn.createStatement();
 			String sql;
 			
+			//creating the Statement
 	    	sql = statementBuilder();
 	    	
 	    	System.out.println("SEARCH Query:"+sql);
