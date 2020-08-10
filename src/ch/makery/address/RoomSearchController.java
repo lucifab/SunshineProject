@@ -253,7 +253,7 @@ public class RoomSearchController extends  Controller{
 				String sql;
 
 				//Creating the Statement according to user specifications
-				//sql = "SELECT FROM reservation WHERE  checkIn > "+fromSend+" or checkOut< "+toSend+" ";
+				
 				 sql = "SELECT * FROM Reservation re WHERE NOT EXISTS (SELECT roomNo FROM Rooms r  WHERE re.roomNo = r.roomNo AND (("+fromSend+" >= checkIn AND "+toSend+"  <= checkOut) OR ("+fromSend+" <= checkIn AND "+toSend+" >= checkIn)  ))";
 				System.out.println("SEARCH Query:"+sql);
 
@@ -277,15 +277,18 @@ public class RoomSearchController extends  Controller{
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			                          }
 		}
 	}
 	
+	
 	//builds statement query according to user specifications
-	public String statementBuilder() {
-		String str = "SELECT * FROM `availablerooms`";
+public String statementBuilder () {
+	
+	String str =  "(SELECT * FROM Reservation re WHERE NOT EXISTS (SELECT roomNo FROM Rooms r  WHERE re.roomNo = r.roomNo AND (("+fromSend+" >= checkIn AND "+toSend+"  <= checkOut) OR ("+fromSend+" <= checkIn AND "+toSend+" >= checkIn)  ))";
 		str = str+" WHERE roomLocation=\""+location.getValue()+"\" AND NoOfBedrooms="+bedroomNo.getValue();
 		
 		return str;
 	}
 }
+
