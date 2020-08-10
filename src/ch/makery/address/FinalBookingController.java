@@ -241,7 +241,7 @@ public class FinalBookingController extends Controller{
 			}
 		}
 		//check if card Number only contains number
-		else if((ccvAux.matches("^[0-9]*$"))||cardNoAux.matches("^[0-9]*$")) {
+		else if(!(ccvAux.matches("^[0-9]*$"))||!(cardNoAux.matches("^[0-9]*$"))) {
 			if(flag==false) {
 				error="CVC and Card Number can only contain numbers.";
 			}

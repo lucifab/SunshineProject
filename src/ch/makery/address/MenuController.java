@@ -243,7 +243,13 @@ public class MenuController extends Controller {
 				
 				//Change from reservations
 				sql = "UPDATE `reservation` SET cancellationID="+cancellationAux+" WHERE `reservationID`="+selection.getID();
-				System.out.println("Query:"+sql);
+				System.out.println("Reservation change status Query:"+sql);
+				mainApp.stmt.executeUpdate(sql);
+				
+				
+				//Remove from roomstatus table
+				sql = "DELETE FROM `roomstatus` WHERE reservationID="+selection.getID();
+				System.out.println("Room status Query:"+sql);
 				mainApp.stmt.executeUpdate(sql);
 
 				System.out.println("Selection removed.\n");

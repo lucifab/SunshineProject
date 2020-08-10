@@ -99,10 +99,8 @@ public class RoomSearchController extends  Controller{
 		bedroomNo.setItems(aux);
 		bedroomNo.getSelectionModel().select(1);
 		
-		//Populates table before search
-		fetchRooms();
+		//Connects roomData to the table
 		roomTable.setItems(mainApp.roomData);
-		populate();
 		
 		//Again, a listener for the table
 		roomTable.getSelectionModel().selectedItemProperty().addListener(
@@ -278,8 +276,8 @@ public class RoomSearchController extends  Controller{
 	
 	//builds statement query according to user specifications
 	public String statementBuilder() {
-		String str = "SELECT * FROM `availablerooms`";
-		str = str+" WHERE roomLocation=\""+location.getValue()+"\" AND NoOfBedrooms="+bedroomNo.getValue();
+		String str = "SELECT * FROM `rooms` WHERE roomNo NOT IN (SELECT roomNo FROM `roomstatus` WHERE NOT ((`checkIn`>= "+toSend.toInt()+" AND `checkOut`>= "+toSend.toInt()+") OR (`checkIn`<= "+fromSend.toInt()+" AND `checkOut`<= "+fromSend.toInt()+")))";
+		str = str+" AND roomLocation=\""+location.getValue()+"\" AND NoOfBedrooms="+bedroomNo.getValue();
 		
 		return str;
 	}
