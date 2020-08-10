@@ -74,15 +74,9 @@ reservationID int not null ,
 paymentType char(10) not null,
 cardNo int(30) not null,
 cvv int not null,
-nameOnCard char(25) not null,
-primary key(invoiceNo),
-FOREIGN KEY (userName)
-        REFERENCES newUser (userName)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY (reservationID)
-        REFERENCES reservation (reservationID)
-        ON UPDATE CASCADE ON DELETE CASCADE 
+nameOnCard char(25) not null 
 );
+
 CREATE TABLE cancellation(
 CancellationID int not null auto_increment,
 reservationID int not null ,
@@ -108,20 +102,11 @@ FOREIGN KEY (reservationID)
 CREATE TABLE feedback (
     feedbackNo INT NOT NULL auto_increment,
     username VARCHAR(50) NOT NULL DEFAULT ' ',
-    reservationID INT NOT NULL DEFAULT ' ',
-    roomNo INT NOT NULL DEFAULT ' ',
+    reservationID INT,
+    roomNo INT,
     rating INT,
     review TEXT,
-    PRIMARY KEY (feedbackNo),
-    FOREIGN KEY (userName)
-        REFERENCES newUser (userName)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (roomNo)
-        REFERENCES Rooms (roomNo)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (reservationID)
-        REFERENCES reservation (reservationID)
-        ON UPDATE CASCADE ON DELETE CASCADE
+    PRIMARY KEY (feedbackNo)
 );
 
 /*inserts*/

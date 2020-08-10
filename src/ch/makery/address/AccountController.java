@@ -48,13 +48,14 @@ public class AccountController extends Controller {
 			mainApp.stmt = mainApp.conn.createStatement();
 			String sql;
 			
-			sql="INSERT INTO `payments` (`invoiceNo`, `username`, `firstName`, `lastName`, `reservationID`, `paymentType`, `cardNo`, `cvv`, `nameOnCard`) "
-					+ "VALUES ('NULL', '" + UserText.getText() + "', '" + FNameText.getText() + "', '" + LNameText.getText() + "', '" + ReservText.getText() + "', '" + PaymentText.getText() + "', '" + CardNumText.getText() + "', '" + EnterCVCField.getText() + "', '" + CardnameText.getText() + "');";
+			sql="INSERT INTO `payments` (`username`, `firstName`, `lastName`, `reservationID`, `paymentType`, `cardNo`, `cvv`, `nameOnCard`) "
+					+ "VALUES ('" + UserText.getText() + "', '" + FNameText.getText() + "', '" + LNameText.getText() + "', '" + ReservText.getText() + "', '" + PaymentText.getText() + "', '" + CardNumText.getText() + "', '" + EnterCVCField.getText() + "', '" + CardnameText.getText() + "');";
 			
 			System.out.println("Query:"+sql); 
 			
 			
-			mainApp.stmt.executeQuery(sql);
+			mainApp.stmt.executeUpdate(sql);
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

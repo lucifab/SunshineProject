@@ -44,7 +44,7 @@ private TextField commentBox;
 
 public void clickSubmitButton()
 {
-	String rev= issue + "\n" + commentBox.getText();
+	String rev= issue + "  " + commentBox.getText();
 	
 	System.out.print("Submitting the feedback ...");
 	
@@ -53,13 +53,13 @@ public void clickSubmitButton()
 	System.out.println("\n\nCreating statement...\n\n");
 	mainApp.stmt = mainApp.conn.createStatement();
 	String sql;
-	sql = "INSERT INTO `feedback` (`feedbackNo`, `username`, `reservationID`, `roomNo`, `rating`, `review`) "
-			+ "    VALUES (NULL, '" + mainApp.getCurrentUser().getUsername() + "', NULL, NULL, NULL, '" + rev + "');";
+	sql = "INSERT INTO `feedback` (`username`, `reservationID`, `roomNo`, `rating`, `review`) "
+			+ "    VALUES ('" + mainApp.getCurrentUser().getUsername() + "', 345, 78, NULL, '" + rev + "');";
 	
 	System.out.println("Query:"+sql); 
 	
-	
-      mainApp.stmt.executeQuery(sql);
+	//mainApp.stmt.executeQuery(sql);
+      mainApp.stmt.executeUpdate(sql);
 	
 	
 } catch (SQLException e) {
