@@ -165,15 +165,14 @@ select * from Availablerooms order by roomNo;
 create view package as(select packages.packagename,packages.roomNo,packages.discount,food.fooditem from packages inner join food on packages.foodid = food.foodid);
 select* from package;
 
-create view c as (select rooms.roomType,rooms.roomLocation, rooms.roomNo, rooms.noOfBedrooms,rooms.noOfWashrooms,reservation.foodid, reservation.userName from rooms inner join reservation on rooms.roomNo = reservation.roomNo);
-create view myB as (select c.roomType,c.roomLocation, c.RoomNo,c.noOfBedrooms,c.noOfWashrooms,c.userName,food.foodItem from c inner join food where c.foodID = food.foodid);
-create view myBookings as (select myB.roomType,myB.roomLocation, myB.roomNo, myB.noOfBedrooms, myB.noOfWashrooms,myB.foodItem from myB inner join loginDetails where myB.userName = loginDetails.userName );
+create view c as (select rooms.roomType,rooms.roomLocation, rooms.roomNo, rooms.noOfBedrooms,rooms.noOfWashrooms, reservation.userName from rooms inner join reservation on rooms.roomNo = reservation.roomNo);
+create view myBookings as (select c.roomType,c.roomLocation, c.roomNo, c.noOfBedrooms, c.noOfWashrooms, from c inner join loginDetails where c.userName = loginDetails.userName );
 select*from myBookings;
 
 create view account as(select newUser.username, newuser.firstname, newuser.lastname, newuser.userEmail, newuser.password, newuser.address1, newuser.city, newuser.state, newuser.country, newuser.postalcode from newuser inner join loginDetails on newuser.username=loginDetails.username);
 select * from account;
 
-create view reservationconfirmation as(select loginDetails.userName, reservation.packagename,reservation.foodid,reservation.roomno,reservation.checkin,reservation.checkout, reservation.adults,reservation.children from logindetails inner join reservation on logindetails.username = reservation.username);
+create view reservationconfirmation as(select loginDetails.userName,reservation.roomno,reservation.checkin,reservation.checkout, reservation.adults,reservation.children from logindetails inner join reservation on logindetails.username = reservation.username);
 select * from reservationConfirmation;
 
 create view allBookings as (SELECT * FROM reservation NATURAL JOIN rooms);
