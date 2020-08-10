@@ -158,12 +158,14 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("view/SignOn.fxml"));
             AnchorPane signOnScreen = (AnchorPane) loader.load();
             
+            SignOnController controller = loader.getController();
+            controller.setMainApp(this);
+            controller.init();
+            
             Scene scene = new Scene(signOnScreen);
             window.setScene(scene);
             window.show();
 
-            SignOnController controller = loader.getController();
-            controller.setMainApp(this);
             
         } catch (IOException e) {
             e.printStackTrace();
