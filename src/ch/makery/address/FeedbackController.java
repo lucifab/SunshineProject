@@ -27,8 +27,6 @@ public void clickSuggestionButton()
 @FXML
 private TextField commentBox;
 
-@FXML
-private Button SubmitButton;
 
 public void clickSubmitButton()
 {

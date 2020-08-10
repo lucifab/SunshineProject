@@ -42,12 +42,12 @@
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="account" mnemonicParsing="false" prefWidth="100.0" text="Account">
+                  <Button fx:id="account" mnemonicParsing="false" onAction="#onAccount" prefWidth="100.0" text="Account">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="feedback" mnemonicParsing="false" prefWidth="100.0" text="Feedback" />
+                  <Button fx:id="feedback" mnemonicParsing="false" onAction="#onFeedback" prefWidth="100.0" text="Feedback" />
                </children>
             </HBox>
             <HBox layoutX="516.0" layoutY="19.0" prefHeight="26.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="19.0">

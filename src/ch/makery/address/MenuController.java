@@ -193,6 +193,7 @@ public class MenuController extends Controller {
 		event.consume();
 		mainApp.showLoginScreen();
 	}
+	
 	public void onRoomSearch(ActionEvent event) {
 		event.consume();
 		System.out.println("Running button thing");
@@ -266,5 +267,13 @@ public class MenuController extends Controller {
 		}
 	}
 	
+	public void onAccount(ActionEvent event) {
+		event.consume();
+		mainApp.showAccount();
+	}
 	
+	public void onFeedback(ActionEvent event) {
+		event.consume();
+		mainApp.showFeedback();
+	}
 }

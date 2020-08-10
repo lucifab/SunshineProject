@@ -215,7 +215,7 @@ public class MainApp extends Application {
 		  try {
 	            FXMLLoader loader = new FXMLLoader();
 	            loader.setLocation(MainApp.class.getResource("view/ForgetPassword.fxml"));
-	            VBox newScreen = (VBox) loader.load();
+	            AnchorPane newScreen = (AnchorPane) loader.load();
 	            
 	            Scene scene = new Scene(newScreen);
 	            window.setScene(scene);
@@ -228,6 +228,48 @@ public class MainApp extends Application {
 		  catch (IOException e) {
 	            e.printStackTrace();
 	            }
+	}
+
+	public void showAccount() {
+		System.out.print("Inside Account");
+		
+		try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/Account.fxml"));
+            AnchorPane newScreen = (AnchorPane) loader.load();
+            
+            Scene scene = new Scene(newScreen);
+            window.setScene(scene);
+            window.show();
+
+             AccountController controller = loader.getController();
+             controller.setMainApp(this);
+            
+        } 
+	  catch (IOException e) {
+            e.printStackTrace();
+            }
+	}
+
+	public void showFeedback() {
+		System.out.print("Inside Feedback");
+		
+		try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/Feedback.fxml"));
+            AnchorPane newScreen = (AnchorPane) loader.load();
+            
+            Scene scene = new Scene(newScreen);
+            window.setScene(scene);
+            window.show();
+
+             FeedbackController controller = loader.getController();
+             controller.setMainApp(this);
+            
+        } 
+	  catch (IOException e) {
+            e.printStackTrace();
+            }
 	}
 
 	
