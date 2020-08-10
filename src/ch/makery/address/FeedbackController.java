@@ -72,10 +72,6 @@ public void clickSubmitButton()
 	}
 	
 	
-	
-	
-	
-	
 	commentBox.setText("");
 	
 	

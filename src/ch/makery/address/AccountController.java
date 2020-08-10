@@ -56,14 +56,6 @@ public class AccountController extends Controller {
 			
 			mainApp.stmt.executeQuery(sql);
 			
-//			ResultSet rs = mainApp.stmt.executeQuery(sql);
-//			while(rs.next()){
-//				
-//				
-//				System.out.println(rs.getString("password"));
-//			}
-			
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
