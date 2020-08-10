@@ -14,7 +14,7 @@
   <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../../../Imagens/Meme/2gun.jpg" />
+            <Image url="@../image/sun.png" />
          </image>
       </ImageView>
       <Label text="SUNSHINE BOOKING SYSTEM" />
