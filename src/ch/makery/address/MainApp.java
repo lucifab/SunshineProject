@@ -24,7 +24,7 @@ public class MainApp extends Application {
 	
 	// Database credentials
 	static final String USER = "root";
-	static final String PASS = "";
+	static final String PASS = "Priya22";
 	
 	Connection conn = null;
 	Statement stmt = null;

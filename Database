@@ -172,8 +172,7 @@ insert into cancellation values (24, 100,1010, 87, 'dhan','2020-07-07','2020-07-
 insert into feedback values (65, 'dhan', 100,1010,9,'excellent service');
 
 
-/*views*/
-
+/*views*
 create view customerReview as(select userName,rating,review from feedback);
 select * from customerReview;
 select* from loginDetails;

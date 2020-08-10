@@ -3,6 +3,7 @@ package ch.makery.address;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Scanner;
 
 import ch.makery.address.model.DateApp;
 import ch.makery.address.model.Reservation;
@@ -227,13 +228,17 @@ public class RoomSearchController extends  Controller{
 	}
 	public void onSearchButton(ActionEvent event) {
 		event.consume();
-		
+		Scanner in = new Scanner(System.in);
 		if((from.getValue()!=null)&&(to.getValue()!=null)) {
 			
 			//Grab date values
 			fromSend = new DateApp(from.getValue().getDayOfMonth(),from.getValue().getMonthValue(),from.getValue().getYear());
 			toSend = new DateApp(to.getValue().getDayOfMonth(),to.getValue().getMonthValue(),to.getValue().getYear());
-
+               System.out.println("\n\nEnter the preferable date for reservation\n");
+               String fromSend = in.nextLine();
+               System.out.println("\n\nEnter the date till you are looking for reservation\n\n");
+               String toSend = in.nextLine();
+               
 			System.out.println("Searching!\nPlease Wait...");
 			System.out.println("\n\nCreating statement...\n\n");
 			try {
@@ -248,8 +253,8 @@ public class RoomSearchController extends  Controller{
 				String sql;
 
 				//Creating the Statement according to user specifications
-				sql = statementBuilder();
-
+				//sql = "SELECT FROM reservation WHERE  checkIn > "+fromSend+" or checkOut< "+toSend+" ";
+				 sql = "SELECT * FROM Reservation re WHERE NOT EXISTS (SELECT roomNo FROM Rooms r  WHERE re.roomNo = r.roomNo AND (("+fromSend+" >= checkIn AND "+toSend+"  <= checkOut) OR ("+fromSend+" <= checkIn AND "+toSend+" >= checkIn)  ))";
 				System.out.println("SEARCH Query:"+sql);
 
 				ResultSet rs = mainApp.stmt.executeQuery(sql);
@@ -264,7 +269,7 @@ public class RoomSearchController extends  Controller{
 					int noWash = rs.getInt("noOfWashrooms");
 
 					//Add values to reservation table
-					mainApp.roomData.add(new Room(location,rType,noWash,noBed,roomNo,price));
+					mainApp.roomData.add(new Room(location,rType, noWash,noBed,roomNo,price));
 
 					//After all the data is fetched, populate the table!
 					populate();
