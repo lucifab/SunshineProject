@@ -120,7 +120,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="46.0" prefWidth="640.0">
                            <children>
-                              <Label fx:id="CardNumDes" text="Card Number:">
+                              <Label fx:id="cardNumDes" text="Card Number:">
                                  <padding>
                                     <Insets right="10.0" />
                                  </padding>
@@ -143,7 +143,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="46.0" prefWidth="640.0">
                            <children>
-                              <Label fx:id="NameOnCardDes" text="Name on Card:">
+                              <Label fx:id="nameOnCardDes" text="Name on Card:">
                                  <padding>
                                     <Insets right="10.0" />
                                  </padding>

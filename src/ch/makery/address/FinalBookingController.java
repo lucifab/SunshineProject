@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -54,10 +55,45 @@ public class FinalBookingController extends Controller{
 	@FXML
 	Label errorMsg;
 	
+	//Labels for language change:
+	@FXML
+	Label roomInfoDes;
+	@FXML
+	Label roomNumDes;
+	@FXML
+	Label locationDes;
+	@FXML
+	Label typeDes;
+	@FXML
+	Label numBedDes;
+	@FXML
+	Label numWashDes;
+	@FXML
+	Label fromDes;
+	@FXML
+	Label toDes;
+	@FXML
+	Label priceDes;
+	@FXML
+	Label payInfo;
+	@FXML
+	Label payTypeDes;
+	@FXML
+	Label cardNumDes;
+	@FXML
+	Label nameOnCardDes;
+	@FXML
+	Button back;
+	@FXML
+	Button confirm;
+	
 	public void init(MainApp main, Room selection,DateApp dateFrom,DateApp dateTo) {
 		
 		//Connects controller
 		this.setMainApp(main);
+		
+		//Language change if needed
+		if (mainApp.flag==true)langChange();
 		
 		//Receives data from prev scene
 		this.selection=selection;
@@ -73,6 +109,26 @@ public class FinalBookingController extends Controller{
 		payType.getSelectionModel().select(1);
 		
 		
+	}
+	
+	public void langChange() {
+		//Changes text according to language
+				roomInfoDes.setText("Vos informations");
+				roomNumDes.setText("Chambre:");
+				locationDes.setText("Emplacement:");
+				numBedDes.setText("No. de Chambre:");
+				numWashDes.setText("No. de toillette:");
+				fromDes.setText("De");
+				toDes.setText("À:");
+				priceDes.setText("Prix");
+				payInfo.setText("Insérer les informations de paiement");
+				payTypeDes.setText("Type de paiement:");
+				cardNumDes.setText("Numéro de carte:");
+				nameOnCardDes.setText("Nom de la carte:");
+				
+				back.setText("Arrière");
+				confirm.setText("Confirmer");
+
 	}
 	
 	public void fillRoomData() {
