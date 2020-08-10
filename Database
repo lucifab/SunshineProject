@@ -162,8 +162,6 @@ create view Emptyrooms as (select roomNo,roomLocation,roomType, NoOfBedrooms, No
 create view AvailableRooms as ( select * from ECI union select * from EmptyRooms);
 select * from Availablerooms order by roomNo;
 
-create view package as(select packages.packagename,packages.roomNo,packages.discount,food.fooditem from packages inner join food on packages.foodid = food.foodid);
-select* from package;
 
 create view c as (select rooms.roomType,rooms.roomLocation, rooms.roomNo, rooms.noOfBedrooms,rooms.noOfWashrooms, reservation.userName from rooms inner join reservation on rooms.roomNo = reservation.roomNo);
 create view myBookings as (select c.roomType,c.roomLocation, c.roomNo, c.noOfBedrooms, c.noOfWashrooms, from c inner join loginDetails where c.userName = loginDetails.userName );
