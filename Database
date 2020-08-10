@@ -41,12 +41,43 @@ primary key(foodID)
 
 Create table packages(
 PackageName varchar(25) not null,
+roomNo int not null ,
 foodID int not null,
 discount double not null,
 primary key (PackageName),
+FOREIGN KEY (roomNo)
+        REFERENCES Rooms (roomNo)
+        ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY (foodid)
         REFERENCES food(foodid)
         ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE reservation(
+reservationID int not null auto_increment,
+CancellationID int,
+username VARCHAR(50) NOT NULL DEFAULT ' ',
+foodID int,
+PackageName varchar(25),
+roomNo int not null,
+checkIn int not null,
+checkOut int not null,
+reservationDate int not null,
+adults int,
+children int,
+primary key(reservationID),
+FOREIGN KEY (userName)
+        REFERENCES newUser (userName)
+        ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (foodID)
+        REFERENCES food(foodID)
+        ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (packageName)
+        REFERENCES packages(packageName)
+        ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (roomNo)
+        REFERENCES Rooms (roomNo)
+        ON UPDATE CASCADE ON DELETE CASCADE 
 );
 
 CREATE TABLE roomStatus(
@@ -82,11 +113,11 @@ FOREIGN KEY (reservationID)
 );
 CREATE TABLE cancellation(
 CancellationID int not null auto_increment,
+reservationID int not null ,
 roomNo int not null ,
 invoiceNo int not null  ,
 username VARCHAR(50) NOT NULL DEFAULT ' ',
-reservationDate Date not null,
-cancelationDate date not null,
+cancelationDate int not null,
 primary key(cancellationID),
 FOREIGN KEY (userName)
         REFERENCES newUser (userName)
@@ -96,36 +127,9 @@ FOREIGN KEY (invoiceNo)
         ON UPDATE CASCADE ON DELETE CASCADE,
 FOREIGN KEY (roomNo)
         REFERENCES Rooms (roomNo)
-        ON UPDATE CASCADE ON DELETE CASCADE
-);
-
-CREATE TABLE reservation(
-reservationID int not null auto_increment,
-CancellationID int,
-username VARCHAR(50) NOT NULL DEFAULT ' ',
-foodID int,
-PackageName varchar(25),
-roomNo int not null,
-checkIn int not null,
-checkOut int not null,
-reservationDate int not null,
-adults int,
-children int,
-primary key(reservationID),
-FOREIGN KEY (userName)
-        REFERENCES newUser (userName)
         ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY (foodID)
-        REFERENCES food(foodID)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY (packageName)
-        REFERENCES packages(packageName)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY (roomNo)
-        REFERENCES Rooms (roomNo)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-FOREIGN KEY (CancellationID)
-        REFERENCES Cancellation (CancellationID)
+FOREIGN KEY (reservationID)
+        REFERENCES reservation(reservationID)
         ON UPDATE CASCADE ON DELETE CASCADE 
 );
 
@@ -160,11 +164,11 @@ insert into rooms values (1001,'Vancouver','single', 1,1, 110.0),(1010,'Vancouve
 insert into food values (1,'breakfast',79),(2,'lunch',100),(3,'dinner',90),
 (4,'snacks',70),(5,'fruits',50),(6,'softdrinks',30),(7,'juice',45),(8,'smoothies',45),(9,'desert',70),
 (10,'breakfast and dinner',169),(11,'breakfast,snacks and dinner',239),(12,'breakfast,snacks,drinks and dinner',269);
-insert into packages values ('special',  10, 200),('luxury',  12,250),('light',1,79);
-insert into reservation values (100,24,'dhan', 3,null, 1010, '20200709','20200711','20200707',1,0),(110,Null,'Priyawalia', 3,null, 1020, '20200715','20200720','20200713',1,0);
+insert into packages values ('special', 3030, 10, 200),('luxury', 4010, 12,250),('light',1001,1,79);
+insert into reservation values (100,'dhan',null, 3,null, 1010, '20200709','20200711','20200707',1,0),(110,'Priyawalia',null, 3,null, 1020, '20200715','20200720','20200713',1,0);
 insert into roomStatus values (1010,100,20200709,20200711),(1020,110,20200715,20200720);
 insert into payments values(87,'dhan','dhanpreet','kaur', 100, 'credit', 4567890, 765, 'Dhanpreet kaur');
-insert into cancellation values (24,1010, 87, 'dhan','2020-07-07','2020-07-08');
+insert into cancellation values (24, 100,1010, 87, 'dhan','2020-07-07','2020-07-08');
 insert into feedback values (65, 'dhan', 100,1010,9,'excellent service');
 
 
@@ -172,8 +176,9 @@ insert into feedback values (65, 'dhan', 100,1010,9,'excellent service');
 
 create view customerReview as(select userName,rating,review from feedback);
 select * from customerReview;
-
 select* from loginDetails;
+
+create view ReservPay as (select * from reservation natural join payments);
 
 Create view CII as (select roomNo from roomstatus where checkIn and checkout >20200714);
 create view COO as(select roomNo from roomstatus where checkOut and checkin < 2020710);
@@ -182,10 +187,10 @@ create view ECI as (select rooms.roomNo, rooms.roomLocation, rooms.roomType, roo
 
 create view Emptyrooms as (select roomNo,roomLocation,roomType, NoOfBedrooms, NoOfWashrooms, Price from rooms a where not exists(select roomNo from roomStatus b where b.roomNo = a.roomNo));
 
-create view AvailableRooms as ( select * from ECI union select * from EmptyRooms) order by roomNo;
-select * from Availablerooms ;
+create view AvailableRooms as ( select * from ECI union select * from EmptyRooms);
+select * from Availablerooms order by roomNo;
 
-create view package as(select packages.packagename,packages.discount,food.fooditem from packages inner join food on packages.foodid = food.foodid);
+create view package as(select packages.packagename,packages.roomNo,packages.discount,food.fooditem from packages inner join food on packages.foodid = food.foodid);
 select* from package;
 
 create view c as (select rooms.roomType,rooms.roomLocation, rooms.roomNo, rooms.noOfBedrooms,rooms.noOfWashrooms,reservation.foodid, reservation.userName from rooms inner join reservation on rooms.roomNo = reservation.roomNo);
@@ -199,6 +204,8 @@ select * from account;
 create view reservationconfirmation as(select loginDetails.userName, reservation.packagename,reservation.foodid,reservation.roomno,reservation.checkin,reservation.checkout, reservation.adults,reservation.children from logindetails inner join reservation on logindetails.username = reservation.username);
 select * from reservationConfirmation;
 
+create view allBookings as (SELECT * FROM reservation NATURAL JOIN rooms);
+create view allRooms as (SELECT * FROM packages NATURAL JOIN rooms);
 
 
 drop table feedback;
@@ -212,3 +219,4 @@ drop table rooms;
 drop table loginDetails;
 drop tables newUser;
 drop database SunshineHotel;
+

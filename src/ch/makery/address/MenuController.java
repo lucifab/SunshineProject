@@ -4,8 +4,10 @@ package ch.makery.address;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.util.Date;
 
-import ch.makery.address.model.Date;
+import ch.makery.address.model.DateApp;
 import ch.makery.address.model.Reservation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -57,9 +59,9 @@ public class MenuController extends Controller {
     @FXML
     protected TableColumn<Reservation, Integer> noWashTable;
     @FXML
-    protected TableColumn<Reservation, Date> fromTable;
+    protected TableColumn<Reservation, DateApp> fromTable;
     @FXML
-    protected TableColumn<Reservation, Date> toTable;
+    protected TableColumn<Reservation, DateApp> toTable;
     
     //INITIALIZATION
 
@@ -96,24 +98,26 @@ public class MenuController extends Controller {
     		//Interacting with database
 			mainApp.stmt = mainApp.conn.createStatement();
 			String sql;
-	    	sql = "SELECT * FROM allbookings WHERE `username`=\""+mainApp.currentUser.username+"\"";
+	    	sql = "SELECT * FROM allbookings WHERE cancellationID IS NULL AND `username`=\""+mainApp.currentUser.username+"\"";
 	    	System.out.println("Fetch Reservation Query:"+sql);
 	    	ResultSet rs = mainApp.stmt.executeQuery(sql);
 	    	//Extracting data from database
 	    	while(rs.next()){
 	    		//Retrieve by column name
+	    		
 	    		String ID = ""+rs.getInt("reservationID");
+	    		int cancellation = rs.getInt("cancellationID");
 	    		String location = rs.getString("roomLocation");
 	    		String packageName = rs.getString("PackageName");
 	    		double price = rs.getDouble("Price");
 	    		int roomNo = rs.getInt("roomNo");
 	    		int noBed = rs.getInt("noOfBedrooms");
 	    		int noWash = rs.getInt("noOfWashrooms");
-	    		Date from = new  Date(rs.getInt("checkIn"));
-	    		Date to = new Date(rs.getInt("checkOut"));
+	    		DateApp from = new  DateApp(rs.getInt("checkIn"));
+	    		DateApp to = new DateApp(rs.getInt("checkOut"));
 
 	    		//Add values to reservation table
-	    		mainApp.reservationData.add(new Reservation(ID,location,packageName,price,noWash,noBed,roomNo,from,to));
+	    		mainApp.reservationData.add(new Reservation(ID,cancellation,location,packageName,price,noWash,noBed,roomNo,from,to));
 	    		
 	    	}
 		} catch (SQLException e) {
@@ -197,27 +201,69 @@ public class MenuController extends Controller {
 	
 	public void onCancel(ActionEvent event) {
 		event.consume();
-		System.out.println("Removing...");
-		try {
-    		System.out.println("\n\nCreating statement...\n\n");
-    		//Interacting with database
-			mainApp.stmt = mainApp.conn.createStatement();
-			String sql;
-	    	sql = "DELETE FROM `reservation` WHERE `reservationID`="+selection.getID();
-	    	System.out.println("Query:"+sql);
-	    	mainApp.stmt.executeUpdate(sql);
-	    	//Extracting data from database
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if(selection!=null) {
+			System.out.println("Removing...");
+			try {
+				
+				//Auxiliary data
+				int invoiceNoAux=0;
+				int cancellationAux=0;
+				DateApp receiver = new DateApp();
+				System.out.println(receiver);
+				
+				
+				System.out.println("\n\nCreating statement...\n\n");
+				//Interacting with database
+				mainApp.stmt = mainApp.conn.createStatement();
+				String sql;
+
+				//Grabbing invoice number
+				sql="SELECT invoiceNo from reservpay WHERE reservationID="+selection.getID();
+				System.out.println("Query:"+sql);
+				
+				ResultSet rs = mainApp.stmt.executeQuery(sql);
+				while(rs.next()) {
+					invoiceNoAux = rs.getInt("invoiceNo");
+					System.out.println("InvoiceNo:"+invoiceNoAux);
+				}
+
+				//Insert into cancellation
+				sql="INSERT INTO cancellation (reservationID,invoiceNo,roomNo,username,cancelationDate) "+
+						"values ("+selection.getID()+","+invoiceNoAux+","+selection.getNo()+",'"+mainApp.currentUser.getUsername()+"',"+receiver.toInt()+")";
+				System.out.println("Query:"+sql);
+				mainApp.stmt.executeUpdate(sql);
+				
+				//Getting cancellation ID
+				sql="SELECT cancellationID from cancellation WHERE reservationID="+selection.getID();
+				System.out.println("Query:"+sql);
+				rs = mainApp.stmt.executeQuery(sql);
+				while(rs.next()) {
+					cancellationAux = rs.getInt("cancellationID");
+				}
+				
+				//Change from reservations
+				sql = "UPDATE `reservation` SET cancellationID="+cancellationAux+" WHERE `reservationID`="+selection.getID();
+				System.out.println("Query:"+sql);
+				mainApp.stmt.executeUpdate(sql);
+
+				System.out.println("Selection removed.\n");
+
+				//Extracting data from database
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			
+
+			//Now to update the table...
+
+			fetchReservation();
+			populate();
 		}
-		
-		System.out.println("Selection removed.\n");
-		
-		//Now to update the table...
-		
-		fetchReservation();
-		populate();
+		else {
+			System.out.println("Can't cancel, no selection.");
+		}
 	}
 	
 	

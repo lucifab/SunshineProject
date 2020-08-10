@@ -2,7 +2,7 @@ package ch.makery.address;
 
 import java.io.IOException;
 
-import ch.makery.address.model.Date;
+import ch.makery.address.model.DateApp;
 import ch.makery.address.model.Reservation;
 import ch.makery.address.model.Room;
 import ch.makery.address.model.User;
@@ -42,7 +42,7 @@ public class MainApp extends Application {
 	protected static ObservableList<Room> roomData = FXCollections.observableArrayList();
 	protected static ObservableList<Reservation> reservationData = FXCollections.observableArrayList();
 	//TestingValues
-	static Date aux = new Date(10,10,2020);
+	static DateApp aux = new DateApp(10,10,2020);
 
 	//METHODS FOR RETRIEVING SAID DATA
 	public User getCurrentUser() {
@@ -130,20 +130,15 @@ public class MainApp extends Application {
             }
         }
     
-    public void showFinalBooking(Room selection) {
+    public void showFinalBooking(Room selection,DateApp dateFrom, DateApp dateTo) {
         try {
         	
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/FinalBooking.fxml"));
             AnchorPane finalBookScene = (AnchorPane) loader.load();
             
-            
-            //If you need to make changes to the layout according to 
-            //specific data you retrieved from the previous scene,
-            //change the stuff with the controller first and then
-            //you create the scene object!!
             FinalBookingController controller = loader.getController();
-            controller.init(this, selection);
+            controller.init(this, selection,dateFrom,dateTo);
             
             
             Scene scene = new Scene(finalBookScene);
@@ -208,15 +203,6 @@ public class MainApp extends Application {
 	
     public static void main(String[] args) { 
     	
-    	//Dummy data for testing
-    	roomData.add(new Room("Macedonia","VIP",1,2,1001,100));
-        roomData.add(new Room("Babylonia","VIP",2,3,1002,100));
-        roomData.add(new Room("Camelot","Normal",1,2,1003,100));
-        roomData.add(new Room("Okeanos","Normal",1,2,1004,100));
-        
-        reservationData.add(new Reservation("1283S","Okeanos","Normal",400,1,2,1004,aux,aux));
-        reservationData.add(new Reservation("5813F","Babylonia","VIP",1400,4,3,3024,aux,aux));
-        
         //Launch app.
     	launch(args);
         

@@ -3,7 +3,7 @@ package ch.makery.address;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import ch.makery.address.model.Date;
+import ch.makery.address.model.DateApp;
 import ch.makery.address.model.Room;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,8 +17,8 @@ public class FinalBookingController extends Controller{
 	
 	//Data from Previous Scene
 	Room selection;
-	Date fromPrev = new Date();
-	Date toPrev = new Date();
+	DateApp fromPrev;
+	DateApp toPrev;
 	
 	//Auxiliary data
 	ObservableList<String> aux = FXCollections.observableArrayList("Credit","Debit");
@@ -54,13 +54,15 @@ public class FinalBookingController extends Controller{
 	@FXML
 	Label errorMsg;
 	
-	public void init(MainApp main, Room selection) {
+	public void init(MainApp main, Room selection,DateApp dateFrom,DateApp dateTo) {
 		
 		//Connects controller
 		this.setMainApp(main);
 		
 		//Receives data from prev scene
 		this.selection=selection;
+		this.fromPrev=dateFrom;
+		this.toPrev=dateTo;
 		
 		//Fills data from left side of screen with the selection from 
 		//RoomSearch scene
@@ -79,7 +81,8 @@ public class FinalBookingController extends Controller{
 		type.setText(this.selection.getType());
 		numBed.setText(""+this.selection.getRoomno());
 		numWash.setText(""+this.selection.getBathno());
-		from.setText(fromPrev.toString()); to.setText(toPrev.toString());
+		from.setText(fromPrev.toString()); 
+		to.setText(toPrev.toString());
 		price.setText(""+this.selection.getDailyPrice());
 
 	}
@@ -92,7 +95,7 @@ public class FinalBookingController extends Controller{
 	public void onConfirmButton(ActionEvent event) {
 		event.consume();
 		if(validate()) {
-			
+			boolean flag = true;
 			//first get MaxReservation ID
 			try {
 	    		System.out.println("\n\nCreating statement...\n\n");
@@ -111,18 +114,22 @@ public class FinalBookingController extends Controller{
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				flag=false;
 			}
 			
 			//Then make a reservation on database
 			
 			try {
+				
+				DateApp today = new DateApp();
+				
 	    		System.out.println("\n\nCreating statement...\n\n");
 	    		//Interacting with database
 				mainApp.stmt = mainApp.conn.createStatement();
 				String sql;
 				
 				//RESERVATION TABLE
-		    	sql = "insert into reservation values ("+reservationMax+",'"+mainApp.getCurrentUser().getUsername()+"', 1,null,"+selection.getNo()+",'"+fromPrev.toInt()+"','"+toPrev.toInt()+"','20200707',1,0)";
+		    	sql = "insert into reservation values ("+reservationMax+",null,'"+mainApp.getCurrentUser().getUsername()+"', 1,null,"+selection.getNo()+",'"+fromPrev.toInt()+"','"+toPrev.toInt()+"','"+today.toInt()+"',1,0)";
 		    	System.out.println("Reservation Query:"+sql);
 		    	mainApp.stmt.executeUpdate(sql);
 		    	
@@ -135,7 +142,9 @@ public class FinalBookingController extends Controller{
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				flag=false;
 			}
+		if(flag==true)mainApp.showMenu();
 		}
 	}
 	

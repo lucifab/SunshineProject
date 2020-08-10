@@ -2,8 +2,9 @@ package ch.makery.address;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
-import ch.makery.address.model.Date;
+import ch.makery.address.model.DateApp;
 import ch.makery.address.model.Reservation;
 import ch.makery.address.model.Room;
 import ch.makery.address.model.User;
@@ -13,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -25,6 +27,9 @@ public class RoomSearchController extends  Controller{
 	//Auxiliary Data
 	ObservableList<String> aux = FXCollections.observableArrayList("1","2","3","4");
 	Room selection;
+	DateApp fromSend;
+	DateApp toSend;
+	
 	//FXML Labels
 	
 	//Data
@@ -34,6 +39,10 @@ public class RoomSearchController extends  Controller{
 	ComboBox<String> location;
 	@FXML
 	ComboBox<String> bedroomNo;
+	@FXML
+	DatePicker from;
+	@FXML
+	DatePicker to;
 	@FXML
     protected TableView<Room> roomTable;
 	@FXML
@@ -192,53 +201,78 @@ public class RoomSearchController extends  Controller{
 	}
 	public void onNextButton(ActionEvent event) {
 		event.consume();
-		System.out.println(currentUser);
-		System.out.println(selection);
+		//System.out.println(currentUser);
+		//System.out.println(selection);
+		//System.out.println(from.getValue()+"\n"+to.getValue());
 		
-		if(selection!=null) {
-		mainApp.showFinalBooking(this.selection);}
+		if((selection!=null)&&(from.getValue()!=null)&&(to!=null)) {
+			
+			fromSend = new DateApp(from.getValue().getDayOfMonth(),from.getValue().getMonthValue(),from.getValue().getYear());
+			toSend = new DateApp(to.getValue().getDayOfMonth(),to.getValue().getMonthValue(),to.getValue().getYear());
+			System.out.println("from:"+fromSend);
+			System.out.println("TO:"+toSend);
+
+			if(toSend.isThisAfter(fromSend)) {
+				mainApp.showFinalBooking(this.selection,fromSend,toSend);
+			}
+			else {
+				System.out.println("Choose valid date.");
+			}
+			
+		}
+		else {
+			System.out.println("Selection is null.");
+		}
 		
 	}
 	public void onSearchButton(ActionEvent event) {
 		event.consume();
-		System.out.println("Searching!\nPlease Wait...");
-		System.out.println("\n\nCreating statement...\n\n");
-    	try {
-    		//Clearing room table...
-    		if (!mainApp.roomData.isEmpty()) {
-    			System.out.println("Clearing old table...");
-    			mainApp.roomData.clear();
-    		}
-    		
-    		//Interacting with database
-			mainApp.stmt = mainApp.conn.createStatement();
-			String sql;
+		
+		if((from.getValue()!=null)&&(to.getValue()!=null)) {
 			
-			//creating the Statement
-	    	sql = statementBuilder();
-	    	
-	    	System.out.println("SEARCH Query:"+sql);
-	    	
-	    	ResultSet rs = mainApp.stmt.executeQuery(sql);
-	    	//Extracting data from database
-	    	while(rs.next()){
-	    		//Retrieve by column name
-	    		String location = rs.getString("roomLocation");
-	    		String rType = rs.getString("roomType");
-	    		double price = rs.getDouble("Price");
-	    		int roomNo = rs.getInt("roomNo");
-	    		int noBed = rs.getInt("noOfBedrooms");
-	    		int noWash = rs.getInt("noOfWashrooms");
+			//Grab date values
+			fromSend = new DateApp(from.getValue().getDayOfMonth(),from.getValue().getMonthValue(),from.getValue().getYear());
+			toSend = new DateApp(to.getValue().getDayOfMonth(),to.getValue().getMonthValue(),to.getValue().getYear());
 
-	    		//Add values to reservation table
-	    		mainApp.roomData.add(new Room(location,rType,noWash,noBed,roomNo,price));
-	    		
-	    		//After all the data is fetched, populate the table!
-	    		populate();
-	    	}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Searching!\nPlease Wait...");
+			System.out.println("\n\nCreating statement...\n\n");
+			try {
+				//Clearing room table...
+				if (!mainApp.roomData.isEmpty()) {
+					System.out.println("Clearing old table...");
+					mainApp.roomData.clear();
+				}
+
+				//Interacting with database
+				mainApp.stmt = mainApp.conn.createStatement();
+				String sql;
+
+				//Creating the Statement according to user specifications
+				sql = statementBuilder();
+
+				System.out.println("SEARCH Query:"+sql);
+
+				ResultSet rs = mainApp.stmt.executeQuery(sql);
+				//Extracting data from database
+				while(rs.next()){
+					//Retrieve by column name
+					String location = rs.getString("roomLocation");
+					String rType = rs.getString("roomType");
+					double price = rs.getDouble("Price");
+					int roomNo = rs.getInt("roomNo");
+					int noBed = rs.getInt("noOfBedrooms");
+					int noWash = rs.getInt("noOfWashrooms");
+
+					//Add values to reservation table
+					mainApp.roomData.add(new Room(location,rType,noWash,noBed,roomNo,price));
+
+					//After all the data is fetched, populate the table!
+					populate();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	

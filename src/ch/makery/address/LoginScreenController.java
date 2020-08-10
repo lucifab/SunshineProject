@@ -10,8 +10,6 @@ import javafx.scene.control.TextField;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import ch.makery.address.model.Date;
-import ch.makery.address.model.Reservation;
 import ch.makery.address.model.User;
 
 public class LoginScreenController extends Controller{
