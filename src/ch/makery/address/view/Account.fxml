@@ -1,9 +1,8 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -17,19 +16,20 @@
       </Label>
       <Label fx:id="userField" layoutX="146.0" layoutY="52.0" text="Username" />
       <TextField fx:id="UserText" layoutX="274.0" layoutY="47.0" />
-      <Label fx:id="EmailField" layoutX="148.0" layoutY="93.0" text="Email Address" />
-      <TextField fx:id="EmailText" layoutX="274.0" layoutY="88.0" />
-      <Label fx:id="PassField" layoutX="148.0" layoutY="134.0" text="Password" />
-      <PasswordField fx:id="PasswordText" layoutX="274.0" layoutY="129.0" />
-      <Label fx:id="addcard" layoutX="143.0" layoutY="179.0" text="Add a credit or debit card information to pay" />
-      <Label fx:id="CardNameField" layoutX="145.0" layoutY="216.0" text="Name on the card" />
-      <TextField fx:id="CardnameText" layoutX="274.0" layoutY="211.0" />
-      <Label fx:id="CardnumField" layoutX="143.0" layoutY="262.0" text="Card number" />
-      <TextField fx:id="CardNumText" layoutX="274.0" layoutY="257.0" />
-      <Label fx:id="ExpiryField" layoutX="147.0" layoutY="342.0" text="Expiration date" />
-      <DatePicker fx:id="ExpiryPicker" layoutX="274.0" layoutY="342.0" onAction="#clickonExpiryPicker" prefHeight="31.0" prefWidth="187.0" />
+      <Label fx:id="FNameField" layoutX="145.0" layoutY="93.0" text="First name" />
+      <TextField fx:id="FNameText" layoutX="274.0" layoutY="88.0" />
+      <Label fx:id="LNameField" layoutX="148.0" layoutY="134.0" text="Last name" />
+      <Label fx:id="Paymentfield" layoutX="144.0" layoutY="210.0" text="PaymentType" />
+      <Label fx:id="CardNameField" layoutX="146.0" layoutY="249.0" text="Name on the card" />
+      <TextField fx:id="CardnameText" layoutX="274.0" layoutY="244.0" />
+      <Label fx:id="CardnumField" layoutX="145.0" layoutY="287.0" text="Card number" />
+      <TextField fx:id="CardNumText" layoutX="274.0" layoutY="282.0" />
       <Button fx:id="AddButton" layoutX="398.0" layoutY="395.0" mnemonicParsing="false" onAction="#clickAddButton" prefHeight="31.0" prefWidth="63.0" text="Add" />
-      <Label fx:id="CVCField" layoutX="145.0" layoutY="304.0" text="Enter CVC code" />
-      <TextField fx:id="EnterCVCField" layoutX="274.0" layoutY="299.0" />
+      <Label fx:id="CVCField" layoutX="144.0" layoutY="327.0" text="Enter CVV code" />
+      <TextField fx:id="EnterCVCField" layoutX="274.0" layoutY="327.0" />
+      <TextField fx:id="LNameText" layoutX="274.0" layoutY="129.0" />
+      <TextField fx:id="PaymentText" layoutX="274.0" layoutY="206.0" />
+      <Label fx:id="ReserField" layoutX="149.0" layoutY="173.0" text="ReservationID" />
+      <TextField fx:id="ReservText" layoutX="274.0" layoutY="168.0" />
    </children>
 </AnchorPane>
