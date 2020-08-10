@@ -44,6 +44,7 @@ private TextField commentBox;
 
 public void clickSubmitButton()
 {
+	String rev= issue + "\n" + commentBox.getText();
 	
 	System.out.print("Submitting the feedback ...");
 	
@@ -52,17 +53,13 @@ public void clickSubmitButton()
 	System.out.println("\n\nCreating statement...\n\n");
 	mainApp.stmt = mainApp.conn.createStatement();
 	String sql;
-	sql = "Select * from newuser WHERE username='krishan'";
+	sql = "INSERT INTO `feedback` (`feedbackNo`, `username`, `reservationID`, `roomNo`, `rating`, `review`) "
+			+ "    VALUES (NULL, '" + mainApp.getCurrentUser().getUsername() + "', NULL, NULL, NULL, '" + rev + "');";
+	
 	System.out.println("Query:"+sql); 
 	
 	
-	ResultSet rs = mainApp.stmt.executeQuery(sql);
-	//Extracting data from database
-	while(rs.next()){
-		
-		//String data = rs.getString("");
-		System.out.println(rs.getString("password"));
-	}
+      mainApp.stmt.executeQuery(sql);
 	
 	
 } catch (SQLException e) {

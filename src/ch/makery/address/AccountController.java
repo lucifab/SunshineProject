@@ -47,15 +47,21 @@ public class AccountController extends Controller {
 			System.out.println("\n\nCreating statement...\n\n");
 			mainApp.stmt = mainApp.conn.createStatement();
 			String sql;
-			sql = "Select * from newuser WHERE username='krishan'";
+			
+			sql="INSERT INTO `payments` (`invoiceNo`, `username`, `firstName`, `lastName`, `reservationID`, `paymentType`, `cardNo`, `cvv`, `nameOnCard`) "
+					+ "VALUES ('NULL', '" + UserText.getText() + "', '" + FNameText.getText() + "', '" + LNameText.getText() + "', '" + ReservText.getText() + "', '" + PaymentText.getText() + "', '" + CardNumText.getText() + "', '" + EnterCVCField.getText() + "', '" + CardnameText.getText() + "');";
+			
 			System.out.println("Query:"+sql); 
 			
-			ResultSet rs = mainApp.stmt.executeQuery(sql);
-			while(rs.next()){
-				
-				
-				System.out.println(rs.getString("password"));
-			}
+			
+			mainApp.stmt.executeQuery(sql);
+			
+//			ResultSet rs = mainApp.stmt.executeQuery(sql);
+//			while(rs.next()){
+//				
+//				
+//				System.out.println(rs.getString("password"));
+//			}
 			
 			
 		} catch (SQLException e) {

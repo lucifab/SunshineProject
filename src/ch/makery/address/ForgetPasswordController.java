@@ -32,24 +32,12 @@ public class ForgetPasswordController extends Controller {
 		System.out.println("\n\nCreating statement...\n\n");
 		mainApp.stmt = mainApp.conn.createStatement();
 		String sql;
-		sql = "Select * from newuser WHERE username='krishan'";
-		System.out.println("Query:"+sql); 
-		
-		ResultSet rs = mainApp.stmt.executeQuery(sql);
-		while(rs.next()){
 			
-			
-			System.out.println(rs.getString("password"));
-		}
 		
-		
-		
-		
-		
-//		sql = "UPDATE `newuser` SET password='" + PassTextField.getText() + "' WHERE username = '" + userTextfield.getText() + "' AND userEmail ='" + RemailTextField.getText() + "';";
-//		System.out.println("Query:"+sql); 
+   sql = "UPDATE `newuser` SET password='" + PassTextField.getText() + "' WHERE username = '" + userTextfield.getText() + "' AND userEmail ='" + RemailTextField.getText() + "';";
+   System.out.println("Query:"+sql); 
 //		
-//		mainApp.stmt.executeUpdate(sql);
+   mainApp.stmt.executeUpdate(sql);
 		clear();
 		
 	} catch (SQLException e) {

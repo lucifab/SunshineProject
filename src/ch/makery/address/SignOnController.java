@@ -43,7 +43,7 @@ public void clickMe()
 		String sql;
 		
 		
-		sql = "Select * from newuser WHERE username='krishan'";
+		sql = "Select * from newuser WHERE username='priyawalia'";
 		System.out.println("Query:"+sql); 
 		
 		
@@ -52,7 +52,7 @@ public void clickMe()
 		while(rs.next()){
 			
 			//String data = rs.getString("");
-			System.out.println(rs.getString("password"));
+			System.out.println(rs.getString("password" + mainApp.getCurrentUser().getUsername()));
 		}
 		
 		

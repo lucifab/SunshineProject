@@ -108,8 +108,8 @@ FOREIGN KEY (reservationID)
 CREATE TABLE feedback (
     feedbackNo INT NOT NULL auto_increment,
     username VARCHAR(50) NOT NULL DEFAULT ' ',
-    reservationID INT NOT NULL ,
-    roomNo INT NOT NULL ,
+    reservationID INT NOT NULL DEFAULT ' ',
+    roomNo INT NOT NULL DEFAULT ' ',
     rating INT,
     review TEXT,
     PRIMARY KEY (feedbackNo),
