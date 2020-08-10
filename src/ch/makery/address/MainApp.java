@@ -214,7 +214,7 @@ public class MainApp extends Application {
 		
 		  try {
 	            FXMLLoader loader = new FXMLLoader();
-	            loader.setLocation(MainApp.class.getResource("view/ForgetPassword.fxml"));
+	            loader.setLocation(MainApp.class.getResource("view/ForgotPassword.fxml"));
 	            AnchorPane newScreen = (AnchorPane) loader.load();
 	            
 	            Scene scene = new Scene(newScreen);
@@ -228,6 +228,10 @@ public class MainApp extends Application {
 		  catch (IOException e) {
 	            e.printStackTrace();
 	            }
+		  catch(Exception e)
+		  {
+			  System.out.print(e.toString());
+		  }
 	}
 
 	public void showAccount() {
