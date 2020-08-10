@@ -1,6 +1,10 @@
 package ch.makery.address;
 
 import javafx.scene.control.*;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javafx.fxml.FXML;
 
 public class SignOnController extends Controller{
@@ -25,14 +29,39 @@ public class SignOnController extends Controller{
 		@FXML
 		private TextField EmailTextField;
 		
-		@FXML
-		private Button CAccountButton;
+		
 	
 	
 public void clickMe()
 {
-	System.out.print("testing" + FnameTextField.getText());
-	clear();
+	if(PassTextField.getText().equals(ConfirmPassTextField.getText()))
+	{
+		try
+		{
+		System.out.println("\n\nCreating statement...\n\n");
+		mainApp.stmt = mainApp.conn.createStatement();
+		String sql;
+		sql = "INSERT INTO `newuser` (`username`, `firstName`, `lastName`, `userEmail`, `password`, `Address1`, `City`, `State`, `Country`, `PostalCode`, `phoneNumber`)"
+				+ " VALUES (`" + unameTextField.getText() + "`, `" + FnameTextField.getText() + "`, `" + LnameTextField.getText() + "`, `" + LnameTextField.getText() + "`, `" + PassTextField.getText() + "`, 'null', 'null', 'null', 'null', 'null', 'null');";
+		System.out.println("Query:"+sql); 
+		
+		mainApp.stmt.executeUpdate(sql);
+		
+	
+		clear();
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+	}else
+	{
+		PassTextField.setText("");
+		ConfirmPassTextField.setText("");
+		
+	}	
+	
 }
 	
 

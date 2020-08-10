@@ -221,8 +221,8 @@ public class MainApp extends Application {
 	            window.setScene(scene);
 	            window.show();
 
-//	            ForgetPasswordController controller = loader.getController();
-//	            controller.setMainApp(this);
+                 ForgetPasswordController controller = loader.getController();
+                 controller.setMainApp(this);
 	            
 	        } 
 		  catch (IOException e) {

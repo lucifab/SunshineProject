@@ -33,9 +33,9 @@ public class AccountController extends Controller {
 	private Button AddButton;
 
 
-	/*
-	 * public void clickAddButton(ActionEvent event) throws IOException {
-	 * 
-	 * }
-	 */
+	
+	  public void clickAddButton(){
+	  
+	  }
+	 
 }
