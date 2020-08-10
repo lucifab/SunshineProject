@@ -57,11 +57,10 @@ public void clickMe()
 		
 		
 		
-//		sql = "INSERT INTO `newuser` (`username`, `firstName`, `lastName`, `userEmail`, `password`, `Address1`, `City`, `State`, `Country`, `PostalCode`, `phoneNumber`)"
-//				+ " VALUES (`" + unameTextField.getText() + "`, `" + FnameTextField.getText() + "`, `" + LnameTextField.getText() + "`, `" + LnameTextField.getText() + "`, `" + PassTextField.getText() + "`, 'null', 'null', 'null', 'null', 'null', 'null');";
-//		System.out.println("Query:"+sql); 
-//		
-//		mainApp.stmt.executeUpdate(sql);
+		sql = "INSERT INTO `newuser` (`username`, `firstName`, `lastName`, `userEmail`, `password`, `Address1`, `City`, `State`, `Country`, `PostalCode`, `phoneNumber`)"
+				+ " VALUES (`" + unameTextField.getText() + "`, `" + FnameTextField.getText() + "`, `" + LnameTextField.getText() + "`, `" + LnameTextField.getText() + "`, `" + PassTextField.getText() + "`, 'null', 'null', 'null', 'null', 'null', 'null');";
+		System.out.println("Query:"+sql); 
+			mainApp.stmt.executeUpdate(sql);
 		
 	
 		clear();
