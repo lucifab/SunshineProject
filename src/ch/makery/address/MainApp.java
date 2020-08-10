@@ -209,6 +209,27 @@ public class MainApp extends Application {
         
     }
 
+	public void showForgetPassword() {
+		 System.out.print("You pressed the Forget Password Button");
+		
+		  try {
+	            FXMLLoader loader = new FXMLLoader();
+	            loader.setLocation(MainApp.class.getResource("view/ForgetPassword.fxml"));
+	            VBox newScreen = (VBox) loader.load();
+	            
+	            Scene scene = new Scene(newScreen);
+	            window.setScene(scene);
+	            window.show();
+
+//	            ForgetPasswordController controller = loader.getController();
+//	            controller.setMainApp(this);
+	            
+	        } 
+		  catch (IOException e) {
+	            e.printStackTrace();
+	            }
+	}
+
 	
 }
 

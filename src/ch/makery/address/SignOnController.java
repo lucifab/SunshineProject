@@ -32,10 +32,11 @@ public class SignOnController extends Controller{
 public void clickMe()
 {
 	System.out.print("testing" + FnameTextField.getText());
-	setvalues();
+	clear();
 }
 	
-public void setvalues()
+
+public void clear()
 {
 	FnameTextField.setText("");
 	LnameTextField.setText("");

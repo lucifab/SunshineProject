@@ -49,6 +49,15 @@ public class LoginScreenController extends Controller{
 		 getData();
 		 login(); 
 	    }
+	 
+	 public void clickForgetButton(ActionEvent event)
+	 {
+	
+			
+			  event.consume(); 
+			  mainApp.showForgetPassword();
+			 
+	 }
 	     
 	 public void clickSignOn(ActionEvent event) {
 		 event.consume();
