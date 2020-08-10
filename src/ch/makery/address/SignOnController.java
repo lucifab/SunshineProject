@@ -32,29 +32,20 @@ public class SignOnController extends Controller{
 		
 	
 	
+		
 public void clickMe()
 {
 	if(PassTextField.getText().equals(ConfirmPassTextField.getText()))
 	{
+		
 		try
 		{
+		mainApp.connect("root","");
+			
+			
 		System.out.println("\n\nCreating statement...\n\n");
 		mainApp.stmt = mainApp.conn.createStatement();
 		String sql;
-		
-		
-		sql = "Select * from newuser WHERE username='priyawalia'";
-		System.out.println("Query:"+sql); 
-		
-		
-		ResultSet rs = mainApp.stmt.executeQuery(sql);
-		//Extracting data from database
-		while(rs.next()){
-			
-			//String data = rs.getString("");
-			System.out.println(rs.getString("password" + mainApp.getCurrentUser().getUsername()));
-		}
-		
 		
 		
 		sql = "INSERT INTO `newuser` (`username`, `firstName`, `lastName`, `userEmail`, `password`, `Address1`, `City`, `State`, `Country`, `PostalCode`, `phoneNumber`)"

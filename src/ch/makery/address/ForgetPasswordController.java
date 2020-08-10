@@ -29,6 +29,7 @@ public class ForgetPasswordController extends Controller {
 	
 		try
 		{
+			mainApp.connect("root","");
 		System.out.println("\n\nCreating statement...\n\n");
 		mainApp.stmt = mainApp.conn.createStatement();
 		String sql;
