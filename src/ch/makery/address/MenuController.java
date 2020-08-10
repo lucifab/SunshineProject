@@ -108,7 +108,7 @@ public class MenuController extends Controller {
 	    		String ID = ""+rs.getInt("reservationID");
 	    		int cancellation = rs.getInt("cancellationID");
 	    		String location = rs.getString("roomLocation");
-	    		String packageName = rs.getString("PackageName");
+	    		String roomType = rs.getString("roomType");
 	    		double price = rs.getDouble("Price");
 	    		int roomNo = rs.getInt("roomNo");
 	    		int noBed = rs.getInt("noOfBedrooms");
@@ -117,7 +117,7 @@ public class MenuController extends Controller {
 	    		DateApp to = new DateApp(rs.getInt("checkOut"));
 
 	    		//Add values to reservation table
-	    		mainApp.reservationData.add(new Reservation(ID,cancellation,location,packageName,price,noWash,noBed,roomNo,from,to));
+	    		mainApp.reservationData.add(new Reservation(ID,cancellation,location,roomType,price,noWash,noBed,roomNo,from,to));
 	    		
 	    	}
 		} catch (SQLException e) {
