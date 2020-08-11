@@ -6,30 +6,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.AccountController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="334.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.AccountController">
    <children>
       <Label layoutX="241.0" layoutY="14.0" text="Account Details">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <Label fx:id="userField" layoutX="146.0" layoutY="52.0" text="Username" />
-      <TextField fx:id="UserText" layoutX="274.0" layoutY="47.0" />
-      <Label fx:id="FNameField" layoutX="145.0" layoutY="93.0" text="First name" />
-      <TextField fx:id="FNameText" layoutX="274.0" layoutY="88.0" />
-      <Label fx:id="LNameField" layoutX="148.0" layoutY="134.0" text="Last name" />
-      <Label fx:id="Paymentfield" layoutX="144.0" layoutY="210.0" text="PaymentType" />
-      <Label fx:id="CardNameField" layoutX="146.0" layoutY="249.0" text="Name on the card" />
-      <TextField fx:id="CardnameText" layoutX="274.0" layoutY="244.0" />
-      <Label fx:id="CardnumField" layoutX="145.0" layoutY="287.0" text="Card number" />
-      <TextField fx:id="CardNumText" layoutX="274.0" layoutY="282.0" />
-      <Button fx:id="AddButton" layoutX="398.0" layoutY="395.0" mnemonicParsing="false" onAction="#clickAddButton" prefHeight="31.0" prefWidth="63.0" text="Add" AnchorPane.bottomAnchor="15.8" AnchorPane.rightAnchor="87.79999999999994" />
-      <Label fx:id="CVCField" layoutX="144.0" layoutY="327.0" text="Enter CVV code" />
-      <TextField fx:id="EnterCVCField" layoutX="274.0" layoutY="327.0" />
-      <TextField fx:id="LNameText" layoutX="274.0" layoutY="129.0" />
-      <TextField fx:id="PaymentText" layoutX="274.0" layoutY="206.0" />
-      <Label fx:id="ReserField" layoutX="149.0" layoutY="173.0" text="ReservationID" />
-      <TextField fx:id="ReservText" layoutX="274.0" layoutY="168.0" />
-      <Button layoutX="401.0" layoutY="393.0" mnemonicParsing="false" onAction="#onBackBtn" prefHeight="31.0" prefWidth="63.0" text="Back" AnchorPane.bottomAnchor="15.800000000000011" AnchorPane.rightAnchor="175.8" />
+      <Label fx:id="userField" layoutX="142.0" layoutY="73.0" text="Username" />
+      <TextField fx:id="UserText" layoutX="256.0" layoutY="69.0" />
+      <Label fx:id="FNameField" layoutX="141.0" layoutY="127.0" text="First name" />
+      <TextField fx:id="FNameText" layoutX="256.0" layoutY="123.0" />
+      <Label fx:id="LNameField" layoutX="137.0" layoutY="180.0" prefHeight="17.0" prefWidth="63.0" text="Last name" />
+      <Button fx:id="AddButton" layoutX="359.0" layoutY="250.0" mnemonicParsing="false" onAction="#clickAddButton" prefHeight="31.0" prefWidth="63.0" text="Add" />
+      <TextField fx:id="LNameText" layoutX="256.0" layoutY="176.0" />
+      <Button layoutX="475.0" layoutY="253.0" mnemonicParsing="false" onAction="#onBackBtn" prefHeight="25.0" prefWidth="63.0" text="Back" />
    </children>
 </AnchorPane>

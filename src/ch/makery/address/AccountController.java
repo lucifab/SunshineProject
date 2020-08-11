@@ -21,21 +21,6 @@ public class AccountController extends Controller {
 
 	@FXML
 	private TextField LNameText;
-	
-	@FXML
-	private TextField ReservText;
-	
-	@FXML
-	private TextField PaymentText;
-
-	@FXML
-	private TextField CardnameText;
-
-	@FXML
-	private TextField CardNumText;
-
-	@FXML
-	private TextField EnterCVCField;
 
 
 	 public void onBackBtn()
@@ -79,12 +64,8 @@ public class AccountController extends Controller {
 		
 		UserText.setText("");
 		FNameText.setText("");
-		CardnameText.setText("");
-		CardNumText.setText("");
-		EnterCVCField.setText("");
 		LNameText.setText("");
-		ReservText.setText("");
-		PaymentText.setText("");
+		
 	}
 	 
 }
