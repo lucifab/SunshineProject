@@ -31,7 +31,6 @@ public class DateApp{
 		this.day=full%100;
 		this.month=(full%10000-this.day)/100;
 		this.year=(full-this.month-this.day)/10000;
-		System.out.println(this);
 	}
 	
 	

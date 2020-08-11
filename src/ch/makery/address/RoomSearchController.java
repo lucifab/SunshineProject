@@ -71,6 +71,8 @@ public class RoomSearchController extends  Controller{
 	Button next;
 	@FXML
 	Button search;
+	@FXML
+	Label errorMsg;
 	
 	//METHODS
 	
@@ -118,15 +120,12 @@ public class RoomSearchController extends  Controller{
     	try {
     		//Clearing room Data table... (to update it)
     		if (!mainApp.locations.isEmpty()) {
-    			System.out.println("Clearing old table...");
     			mainApp.locations.clear();
     		}
-    		System.out.println("\n\nCreating statement...\n\n");
     		//Interacting with database
 			mainApp.stmt = mainApp.conn.createStatement();
 			String sql;
 	    	sql = "SELECT DISTINCT roomLocation FROM `rooms`";
-	    	System.out.println("Fetch Room Query:"+sql);
 	    	ResultSet rs = mainApp.stmt.executeQuery(sql);
 	    	//Extracting data from database
 	    	while(rs.next()){
@@ -142,11 +141,9 @@ public class RoomSearchController extends  Controller{
 	}
 	
 	public void fetchRooms() {
-		System.out.println("\n\nCreating statement...\n\n");
     	try {
     		//Clearing room Data table... (to update it)
     		if (!mainApp.roomData.isEmpty()) {
-    			System.out.println("Clearing old table...");
     			mainApp.roomData.clear();
     		}
     		
@@ -154,7 +151,6 @@ public class RoomSearchController extends  Controller{
 			mainApp.stmt = mainApp.conn.createStatement();
 			String sql;
 	    	sql = "SELECT * FROM `availablerooms`";
-	    	System.out.println("Query:"+sql);
 	    	ResultSet rs = mainApp.stmt.executeQuery(sql);
 	    	//Extracting data from database
 	    	while(rs.next()){
@@ -194,33 +190,39 @@ public class RoomSearchController extends  Controller{
 
 	public void onBackButton(ActionEvent event) {
 		event.consume();
-	    System.out.println("Hello, World!");
 	    mainApp.showMenu();
 	}
 	public void onNextButton(ActionEvent event) {
 		event.consume();
-		//System.out.println(currentUser);
-		//System.out.println(selection);
-		//System.out.println(from.getValue()+"\n"+to.getValue());
 		
+
 		if((selection!=null)&&(from.getValue()!=null)&&(to!=null)) {
 			
 			fromSend = new DateApp(from.getValue().getDayOfMonth(),from.getValue().getMonthValue(),from.getValue().getYear());
 			toSend = new DateApp(to.getValue().getDayOfMonth(),to.getValue().getMonthValue(),to.getValue().getYear());
-			System.out.println("from:"+fromSend);
-			System.out.println("TO:"+toSend);
 
 			if(toSend.isThisAfter(fromSend)) {
 				mainApp.showFinalBooking(this.selection,fromSend,toSend);
 			}
 			else {
-				System.out.println("Choose valid date.");
+				if(mainApp.flag=false) {
+					errorMsg.setText("Choose valid date.");
+				}
+				else {
+					errorMsg.setText("Choisissez une date valide.");
+				}
 			}
 			
 		}
 		else {
-			System.out.println("Selection is null.");
+			if(mainApp.flag==false) {
+				errorMsg.setText("Selection is null.");
+			}
+			else {
+				errorMsg.setText("La sélection est nulle.");
+			}
 		}
+		
 		
 	}
 	public void onSearchButton(ActionEvent event) {
@@ -232,13 +234,10 @@ public class RoomSearchController extends  Controller{
 			fromSend = new DateApp(from.getValue().getDayOfMonth(),from.getValue().getMonthValue(),from.getValue().getYear());
 			toSend = new DateApp(to.getValue().getDayOfMonth(),to.getValue().getMonthValue(),to.getValue().getYear());
 
-			System.out.println("Searching!\nPlease Wait...");
-			System.out.println("\n\nCreating statement...\n\n");
 			try {
 				//Clearing room table...
-				if (!mainApp.roomData.isEmpty()) {
-					System.out.println("Clearing old table...");
-					mainApp.roomData.clear();
+				if (!MainApp.roomData.isEmpty()) {
+					MainApp.roomData.clear();
 				}
 
 				//Interacting with database
@@ -247,9 +246,6 @@ public class RoomSearchController extends  Controller{
 
 				//Creating the Statement according to user specifications
 				sql = statementBuilder();
-
-				System.out.println("SEARCH Query:"+sql);
-
 				ResultSet rs = mainApp.stmt.executeQuery(sql);
 				//Extracting data from database
 				while(rs.next()){

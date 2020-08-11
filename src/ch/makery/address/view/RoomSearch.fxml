@@ -45,6 +45,7 @@
                               <DatePicker fx:id="to" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                            </children>
                         </GridPane>
+                        <Label fx:id="errorMsg" />
                      </children>
                   </VBox>
                   <ButtonBar layoutX="24.0" layoutY="344.0" prefHeight="40.0" prefWidth="174.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="24.0">

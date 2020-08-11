@@ -61,6 +61,7 @@
                </children>
             </HBox>
             <Label fx:id="description1" layoutX="26.0" layoutY="90.0" prefHeight="26.0" prefWidth="365.0" text="To cancel a reservation, select it on the table below and click cancel" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="90.0" />
+            <Label fx:id="errorMsg" layoutX="392.0" layoutY="122.0" AnchorPane.leftAnchor="392.0" AnchorPane.topAnchor="122.0" />
       </children>
     </AnchorPane>
   </children>

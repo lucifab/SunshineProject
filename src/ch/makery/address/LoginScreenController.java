@@ -55,12 +55,9 @@ public class LoginScreenController extends Controller{
 	 }
 	 
 	 private void login() {
-		 System.out.println("Logging in...");
 		 mainApp.connect("root", "");
 		 boolean flag = validate();
 		 if (flag==true) {
-			 System.out.print("Hello,");
-		     System.out.println(userField.getText());
 		     mainApp.showMenu();
 		 }		 
 	 }
@@ -77,7 +74,6 @@ public class LoginScreenController extends Controller{
 		 mainApp.stmt = mainApp.conn.createStatement();
 			String sql;
 	    	sql = "SELECT userName,password FROM `newuser` WHERE userName=\""+this.username+"\"";
-	    	System.out.println("LOGIN Query:"+sql);
 	    	ResultSet rs = mainApp.stmt.executeQuery(sql);
 	    	//Extracting data from database
 	    	while(rs.next()){
@@ -89,9 +85,6 @@ public class LoginScreenController extends Controller{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
- 
-		System.out.println("Input:"+this.username+"\nPass:"+this.password);
-		System.out.println("DB:"+aux1+"\nPass:"+aux2);
 		
 		if((this.username==null)||(this.password)==null) {
 			infoForUser.setText("Please fill the required fields.");
@@ -104,7 +97,6 @@ public class LoginScreenController extends Controller{
 		else if((aux1.equals(this.username))&&(aux2.equals(this.password))) {
 			infoForUser.setText("Authenticating...");
 			 mainApp.setCurrentUser(new User(this.username,this.password));
-			 System.out.println("Authenticated");
 			 return true;
 		 }
 		 else {

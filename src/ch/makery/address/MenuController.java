@@ -41,6 +41,8 @@ public class MenuController extends Controller {
 	Button logOff;
 	@FXML
 	Button setting;
+	@FXML
+	Label errorMsg;
 	
 	//TABLE VIEW FXML 
 	
@@ -87,11 +89,9 @@ public class MenuController extends Controller {
     	//This method fetches the proper reservations from the database and populates the reservationData table
     	//from the mainApp
     	
-    	System.out.println("\n\nCreating statement...\n\n");
     	try {
     		//Clearing reservation table...
     		if (!mainApp.reservationData.isEmpty()) {
-    			System.out.println("Clearing old table...");
     			mainApp.reservationData.clear();
     		}
     		
@@ -99,7 +99,6 @@ public class MenuController extends Controller {
 			mainApp.stmt = mainApp.conn.createStatement();
 			String sql;
 	    	sql = "SELECT * FROM allbookings WHERE cancellationID IS NULL AND `username`=\""+mainApp.currentUser.username+"\"";
-	    	System.out.println("Fetch Reservation Query:"+sql);
 	    	ResultSet rs = mainApp.stmt.executeQuery(sql);
 	    	//Extracting data from database
 	    	while(rs.next()){
@@ -139,9 +138,7 @@ public class MenuController extends Controller {
     }
     
 	public void langChange(boolean flag) {
-		System.out.println("Executing language change...");
 		if (flag) {
-			System.out.println("Bonjour!!\nChanging language...");
 			title.setText("Réservation Hôtel Soleil");
 			description.setText("Vos réservations actuelles");
 			description1.setText("Pour annuler une réservation, sélectionnez-la dans le tableau ci-dessous et cliquez sur Annuler");
@@ -160,7 +157,6 @@ public class MenuController extends Controller {
 			
 			}
 		else {
-			System.out.println("Hello!!\nChanger la langue...");
 			title.setText("SUNSHINE BOOKING SYSTEM");
 			description.setText("Your current bookings");
 			booking.setText("Bookings");
@@ -183,7 +179,6 @@ public class MenuController extends Controller {
 	
 	public void onLanguage(ActionEvent event) {		
 		event.consume();
-		System.out.println("Changing language");
 		mainApp.flag=!mainApp.flag;
 		langChange(mainApp.flag);
 	}
@@ -191,51 +186,46 @@ public class MenuController extends Controller {
 
 	public void onLogOff(ActionEvent event) {
 		event.consume();
+		mainApp.dc=true;
+		mainApp.connect("root","");
 		mainApp.showLoginScreen();
 	}
 	public void onRoomSearch(ActionEvent event) {
 		event.consume();
-		System.out.println("Running button thing");
 		mainApp.showRoomSearch();
 	}
 	
 	public void onCancel(ActionEvent event) {
 		event.consume();
 		if(selection!=null) {
-			System.out.println("Removing...");
 			try {
 				
 				//Auxiliary data
 				int invoiceNoAux=0;
 				int cancellationAux=0;
 				DateApp receiver = new DateApp();
-				System.out.println(receiver);
 				
 				
-				System.out.println("\n\nCreating statement...\n\n");
 				//Interacting with database
 				mainApp.stmt = mainApp.conn.createStatement();
 				String sql;
 
 				//Grabbing invoice number
 				sql="SELECT invoiceNo from reservpay WHERE reservationID="+selection.getID();
-				System.out.println("Query:"+sql);
 				
 				ResultSet rs = mainApp.stmt.executeQuery(sql);
 				while(rs.next()) {
 					invoiceNoAux = rs.getInt("invoiceNo");
-					System.out.println("InvoiceNo:"+invoiceNoAux);
+	
 				}
 
 				//Insert into cancellation
 				sql="INSERT INTO cancellation (reservationID,invoiceNo,roomNo,username,cancelationDate) "+
 						"values ("+selection.getID()+","+invoiceNoAux+","+selection.getNo()+",'"+mainApp.currentUser.getUsername()+"',"+receiver.toInt()+")";
-				System.out.println("Query:"+sql);
 				mainApp.stmt.executeUpdate(sql);
 				
 				//Getting cancellation ID
 				sql="SELECT cancellationID from cancellation WHERE reservationID="+selection.getID();
-				System.out.println("Query:"+sql);
 				rs = mainApp.stmt.executeQuery(sql);
 				while(rs.next()) {
 					cancellationAux = rs.getInt("cancellationID");
@@ -243,16 +233,13 @@ public class MenuController extends Controller {
 				
 				//Change from reservations
 				sql = "UPDATE `reservation` SET cancellationID="+cancellationAux+" WHERE `reservationID`="+selection.getID();
-				System.out.println("Reservation change status Query:"+sql);
 				mainApp.stmt.executeUpdate(sql);
 				
 				
 				//Remove from roomstatus table
 				sql = "DELETE FROM `roomstatus` WHERE reservationID="+selection.getID();
-				System.out.println("Room status Query:"+sql);
 				mainApp.stmt.executeUpdate(sql);
 
-				System.out.println("Selection removed.\n");
 
 				//Extracting data from database
 			} catch (SQLException e) {
@@ -268,7 +255,13 @@ public class MenuController extends Controller {
 			populate();
 		}
 		else {
-			System.out.println("Can't cancel, no selection.");
+			if(mainApp.flag==false) {
+				errorMsg.setText("Can't cancel, no selection.");
+			}
+			else {
+				errorMsg.setText("Impossible d'annuler, pas de sélection.");
+			}
+			
 		}
 	}
 	

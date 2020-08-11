@@ -37,7 +37,7 @@ public class MainApp extends Application {
 	//DATA FOR RUNNING PROGRAM
 	protected User currentUser;
 	protected boolean flag = false;//False means english, true means french
-	//Lists that will be retrieved  and stored from the database
+	//Lists that will be retrieved  and sstored from the database
 	protected ObservableList<String> locations = FXCollections.observableArrayList("Macedonia","Babylonia","Camelot");
 	protected static ObservableList<Room> roomData = FXCollections.observableArrayList();
 	protected static ObservableList<Reservation> reservationData = FXCollections.observableArrayList();
@@ -175,9 +175,9 @@ public class MainApp extends Application {
     public void connect(String username, String password) {
     	try{
     		Class.forName("com.mysql.jdbc.Driver");
-    		System.out.println("Connecting to database...");
+    		
     		this.conn = DriverManager.getConnection(DB_URL,USER,PASS);
-    		System.out.println("Connection successful!");
+    		
     	}catch(SQLException se){
     		//Handle errors for JDBC
     		se.printStackTrace();
@@ -188,7 +188,6 @@ public class MainApp extends Application {
     		//finally block used to close resources
     		try{
     			if(dc==true) {
-    				System.out.println("Closing connection.");
     				stmt.close();
     				};
     		}catch(SQLException se) {
