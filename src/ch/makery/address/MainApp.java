@@ -17,8 +17,6 @@ import javafx.stage.Stage;
 import java.sql.*;
 
 
-//testcommit2
-
 public class MainApp extends Application {
 	
 	//JDBC
