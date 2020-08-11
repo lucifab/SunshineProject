@@ -30,5 +30,6 @@
       <TextField fx:id="PaymentText" layoutX="274.0" layoutY="206.0" />
       <Label fx:id="ReserField" layoutX="149.0" layoutY="173.0" text="ReservationID" />
       <TextField fx:id="ReservText" layoutX="274.0" layoutY="168.0" />
+      <Button layoutX="489.0" layoutY="398.0" mnemonicParsing="false" onAction="#onBackBtn" prefHeight="25.0" prefWidth="63.0" text="Back" />
    </children>
 </AnchorPane>

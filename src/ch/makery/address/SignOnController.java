@@ -33,6 +33,13 @@ public class SignOnController extends Controller{
 		mainApp.connect("root", "");
 	}
 
+	public void onBackBtn(ActionEvent event)
+	{
+		event.consume();
+		mainApp.showLoginScreen();
+	}
+	
+	
 	public void clickMe()
 	{
 		if(PassTextField.getText().equals(ConfirmPassTextField.getText()))
@@ -55,7 +62,6 @@ public class SignOnController extends Controller{
 			clear();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.print("\nSQL ERROR");
 		}catch (Exception e)

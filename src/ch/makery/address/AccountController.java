@@ -2,6 +2,7 @@ package ch.makery.address;
 
 import javafx.scene.control.TextField;
 
+
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,6 +38,11 @@ public class AccountController extends Controller {
 	private TextField EnterCVCField;
 
 
+	 public void onBackBtn()
+	 {
+		
+			mainApp.showMenu();
+	 }
 	
 	
 	  public void clickAddButton(){

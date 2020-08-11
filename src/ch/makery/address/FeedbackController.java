@@ -2,11 +2,9 @@ package ch.makery.address;
 
 
 import javafx.scene.control.RadioButton;
+
 import javafx.scene.control.TextField;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javafx.fxml.FXML;
 
 public class FeedbackController extends Controller{
@@ -22,6 +20,13 @@ private RadioButton foundBugButton;
 
 @FXML
 private RadioButton suggestionB;
+
+public void onBack()
+{
+	
+	mainApp.showMenu();
+}
+
 
 public void clickLoginTButton()
 {

@@ -5,6 +5,7 @@ import javafx.scene.control.TextField;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 public class ForgetPasswordController extends Controller {
@@ -22,7 +23,11 @@ public class ForgetPasswordController extends Controller {
 	@FXML
 	private TextField ConfirmTextfield;
 	
-
+     public void onBackBtn(ActionEvent event)
+ 	{
+ 		event.consume();
+ 		mainApp.showLoginScreen();
+     }
 	
 	public void clickSubmitButton()
 	{
@@ -62,7 +67,7 @@ public class ForgetPasswordController extends Controller {
 	public void clear()
 	{
         userTextfield.setText("");
-        userTextfield.setText("");
+        RemailTextField.setText("");
         ConfirmTextfield.setText("");
 		PassTextField.setText("");
 		
