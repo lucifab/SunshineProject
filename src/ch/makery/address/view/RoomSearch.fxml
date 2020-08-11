@@ -48,9 +48,9 @@
                         <Label fx:id="errorMsg" />
                      </children>
                   </VBox>
-                  <ButtonBar layoutX="24.0" layoutY="344.0" prefHeight="40.0" prefWidth="174.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="24.0">
+                  <ButtonBar layoutX="-2.0" layoutY="344.0" prefHeight="40.0" prefWidth="305.0" AnchorPane.bottomAnchor="14.399999999999977" AnchorPane.leftAnchor="-2.0">
                     <buttons>
-                      <Button fx:id="back" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onBackButton" text="Back" />
+                      <Button fx:id="back" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onBackButton" prefHeight="26.0" prefWidth="98.0" text="Back" />
                         <Button fx:id="search" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onSearchButton" text="Search" />
                         <Button fx:id="next" maxWidth="-Infinity" mnemonicParsing="false" onAction="#onNextButton" text="Next" />
                     </buttons>

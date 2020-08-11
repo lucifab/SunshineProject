@@ -23,13 +23,13 @@
       <TextField fx:id="CardnameText" layoutX="274.0" layoutY="244.0" />
       <Label fx:id="CardnumField" layoutX="145.0" layoutY="287.0" text="Card number" />
       <TextField fx:id="CardNumText" layoutX="274.0" layoutY="282.0" />
-      <Button fx:id="AddButton" layoutX="398.0" layoutY="395.0" mnemonicParsing="false" onAction="#clickAddButton" prefHeight="31.0" prefWidth="63.0" text="Add" />
+      <Button fx:id="AddButton" layoutX="398.0" layoutY="395.0" mnemonicParsing="false" onAction="#clickAddButton" prefHeight="31.0" prefWidth="63.0" text="Add" AnchorPane.bottomAnchor="15.8" AnchorPane.rightAnchor="87.79999999999994" />
       <Label fx:id="CVCField" layoutX="144.0" layoutY="327.0" text="Enter CVV code" />
       <TextField fx:id="EnterCVCField" layoutX="274.0" layoutY="327.0" />
       <TextField fx:id="LNameText" layoutX="274.0" layoutY="129.0" />
       <TextField fx:id="PaymentText" layoutX="274.0" layoutY="206.0" />
       <Label fx:id="ReserField" layoutX="149.0" layoutY="173.0" text="ReservationID" />
       <TextField fx:id="ReservText" layoutX="274.0" layoutY="168.0" />
-      <Button layoutX="489.0" layoutY="398.0" mnemonicParsing="false" onAction="#onBackBtn" prefHeight="25.0" prefWidth="63.0" text="Back" />
+      <Button layoutX="401.0" layoutY="393.0" mnemonicParsing="false" onAction="#onBackBtn" prefHeight="31.0" prefWidth="63.0" text="Back" AnchorPane.bottomAnchor="15.800000000000011" AnchorPane.rightAnchor="175.8" />
    </children>
 </AnchorPane>

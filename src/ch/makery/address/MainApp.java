@@ -172,6 +172,8 @@ public class MainApp extends Application {
             }
         }
     
+    //JDBC Establish connection
+    
     public void connect(String username, String password) {
     	try{
     		Class.forName("com.mysql.jdbc.Driver");
@@ -210,9 +212,7 @@ public class MainApp extends Application {
         
     }
 
-	public void showForgetPassword() {
-		 System.out.print("You pressed the Forget Password Button");
-		
+	public void showForgetPassword() {		
 		  try {
 	            FXMLLoader loader = new FXMLLoader();
 	            loader.setLocation(MainApp.class.getResource("view/ForgotPassword.fxml"));
@@ -236,7 +236,6 @@ public class MainApp extends Application {
 	}
 
 	public void showAccount() {
-		System.out.print("Inside Account");
 		
 		try {
             FXMLLoader loader = new FXMLLoader();
@@ -257,19 +256,21 @@ public class MainApp extends Application {
 	}
 
 	public void showFeedback() {
-		System.out.print("Inside Feedback");
 		
 		try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/Feedback.fxml"));
             AnchorPane newScreen = (AnchorPane) loader.load();
             
+            FeedbackController controller = loader.getController();
+            controller.init(this);
+       
+            
             Scene scene = new Scene(newScreen);
             window.setScene(scene);
             window.show();
 
-             FeedbackController controller = loader.getController();
-             controller.setMainApp(this);
+             
             
         } 
 	  catch (IOException e) {

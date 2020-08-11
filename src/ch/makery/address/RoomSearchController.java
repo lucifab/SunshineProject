@@ -268,6 +268,14 @@ public class RoomSearchController extends  Controller{
 				e.printStackTrace();
 			}
 		}
+		else {
+			if(mainApp.flag==false) {
+				errorMsg.setText("The dates are empty.");
+			}
+			else {
+				errorMsg.setText("Les dates sont nulles.");
+			}
+		}
 	}
 	
 	//builds statement query according to user specifications

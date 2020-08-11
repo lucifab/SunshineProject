@@ -141,7 +141,7 @@ public class MenuController extends Controller {
 		if (flag) {
 			title.setText("Réservation Hôtel Soleil");
 			description.setText("Vos réservations actuelles");
-			description1.setText("Pour annuler une réservation, sélectionnez-la dans le tableau ci-dessous et cliquez sur Annuler");
+			description1.setText("Pour annuler une réservation, sélectionnez-la dans le tableau ci-dessous");
 			booking.setText("Réservations");
 			cancel.setText("Annuler");
 			account.setText("Compte");
@@ -159,6 +159,7 @@ public class MenuController extends Controller {
 		else {
 			title.setText("SUNSHINE BOOKING SYSTEM");
 			description.setText("Your current bookings");
+			description1.setText("To cancel a reservation, select it on the table below and click cancel");
 			booking.setText("Bookings");
 			cancel.setText("Cancel");
 			account.setText("Account");

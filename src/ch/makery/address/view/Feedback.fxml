@@ -7,26 +7,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.FeedbackController">
+<AnchorPane prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.FeedbackController">
    <children>
-      <AnchorPane layoutX="-14.0" layoutY="-7.0" prefHeight="400.0" prefWidth="600.0">
+      <AnchorPane layoutX="-14.0" layoutY="-7.0" prefHeight="400.0" prefWidth="640.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label layoutX="122.0" layoutY="44.0" text="Give us feedback about the application">
+            <Label fx:id="title" layoutX="122.0" layoutY="44.0" text="Give us feedback about the application" AnchorPane.leftAnchor="122.0" AnchorPane.topAnchor="44.0">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="67.0" layoutY="83.0" text="Please select the type of feedback">
+            <Label fx:id="description" layoutX="67.0" layoutY="83.0" text="Please select the type of feedback">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <RadioButton fx:id="LoginTButton" layoutX="67.0" layoutY="123.0" mnemonicParsing="false" onAction="#clickLoginTButton" text="Login Trouble" />
+            <RadioButton fx:id="LoginTButton" layoutX="67.0" layoutY="128.0" mnemonicParsing="false" onAction="#clickLoginTButton" text="Login Trouble" />
             <RadioButton fx:id="foundBugButton" layoutX="67.0" layoutY="165.0" mnemonicParsing="false" onAction="#clickfoundBugButton" prefHeight="21.0" prefWidth="119.0" text="Found Bug" />
             <RadioButton fx:id="suggestionB" layoutX="68.0" layoutY="209.0" mnemonicParsing="false" onAction="#clickSuggestionButton" text="Suggestions" />
             <TextField fx:id="commentBox" layoutX="73.0" layoutY="243.0" prefHeight="78.0" prefWidth="362.0" promptText="Add comment here" />
-            <Button fx:id="SubmitButton" layoutX="73.0" layoutY="346.0" mnemonicParsing="false" onAction="#clickSubmitButton" prefHeight="31.0" prefWidth="362.0" text="Submit" />
-            <Button layoutX="487.0" layoutY="346.0" mnemonicParsing="false" onAction="#onBack" prefHeight="31.0" prefWidth="86.0" text="Back" />
+            <Button fx:id="SubmitButton" layoutX="73.0" layoutY="346.0" mnemonicParsing="false" onAction="#clickSubmitButton" prefHeight="31.0" prefWidth="362.0" text="Submit" AnchorPane.bottomAnchor="22.80000000000001" AnchorPane.rightAnchor="204.60000000000002" />
+            <Button fx:id="backButton" layoutX="466.0" layoutY="346.0" mnemonicParsing="false" onAction="#onBack" prefHeight="31.0" prefWidth="86.0" text="Back" AnchorPane.bottomAnchor="22.80000000000001" AnchorPane.rightAnchor="47.60000000000002" />
          </children>
       </AnchorPane>
    </children>

@@ -29,25 +29,25 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Label fx:id="description" layoutX="26.0" layoutY="117.0" prefHeight="26.0" prefWidth="158.0" text="Your current bookings:" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="117.0" />
+            <Label fx:id="description" layoutX="26.0" layoutY="117.0" prefHeight="26.0" prefWidth="600.0" text="Your current bookings:" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="117.0" />
             <HBox layoutX="26.0" layoutY="55.0" prefHeight="26.0" prefWidth="588.0" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="55.0">
                <children>
-                  <Button fx:id="booking" mnemonicParsing="false" onAction="#onRoomSearch" prefWidth="100.0" text="Bookings">
+                  <Button fx:id="booking" mnemonicParsing="false" onAction="#onRoomSearch" prefHeight="26.0" prefWidth="119.0" text="Bookings">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="cancel" mnemonicParsing="false" onAction="#onCancel" prefWidth="100.0" text="Cancel">
+                  <Button fx:id="cancel" mnemonicParsing="false" onAction="#onCancel" prefHeight="26.0" prefWidth="119.0" text="Cancel">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="account" mnemonicParsing="false" onAction="#onAccount" prefWidth="100.0" text="Account">
+                  <Button fx:id="account" mnemonicParsing="false" onAction="#onAccount" prefHeight="26.0" prefWidth="119.0" text="Account">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="feedback" mnemonicParsing="false" onAction="#onFeedback" prefWidth="100.0" text="Feedback" />
+                  <Button fx:id="feedback" mnemonicParsing="false" onAction="#onFeedback" prefHeight="26.0" prefWidth="119.0" text="Feedback" />
                </children>
             </HBox>
             <HBox layoutX="516.0" layoutY="19.0" prefHeight="26.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="19.0">
@@ -60,7 +60,7 @@
                   <Button fx:id="setting" mnemonicParsing="false" onAction="#onLanguage" text="Français" />
                </children>
             </HBox>
-            <Label fx:id="description1" layoutX="26.0" layoutY="90.0" prefHeight="26.0" prefWidth="365.0" text="To cancel a reservation, select it on the table below and click cancel" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="90.0" />
+            <Label fx:id="description1" layoutX="26.0" layoutY="95.0" prefHeight="26.0" prefWidth="600.0" text="To cancel a reservation, select it on the table below and click cancel" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="95.0" />
             <Label fx:id="errorMsg" layoutX="392.0" layoutY="122.0" AnchorPane.leftAnchor="392.0" AnchorPane.topAnchor="122.0" />
       </children>
     </AnchorPane>
