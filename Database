@@ -126,7 +126,7 @@ insert into rooms values (1001,'Vancouver','single', 1,1, 110.0),(1010,'Vancouve
 insert into reservation values (100,null,'dhan', 1010, '20200709','20200711','20200707'),(110,null,'Priyawalia', 1020, '20200715','20200720','20200713');
 insert into roomStatus values (1010,100,20200709,20200711),(1020,110,20200715,20200720);
 insert into payments values(87,'dhan','dhanpreet','kaur', 100, 'credit', 4567890, 765, 'Dhanpreet kaur');
-insert into feedback values (65, 'dhan', 100,1010,9,'excellent service');
+
 
 
 /*views*/
