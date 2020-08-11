@@ -149,7 +149,6 @@ select * from Availablerooms order by roomNo;
 
 
 create view c as (select rooms.roomType,rooms.roomLocation, rooms.roomNo, rooms.noOfBedrooms,rooms.noOfWashrooms, reservation.userName from rooms inner join reservation on rooms.roomNo = reservation.roomNo);
-create view myBookings as (select c.roomType,c.roomLocation, c.roomNo, c.noOfBedrooms, c.noOfWashrooms, from c inner join loginDetails where c.userName = loginDetails.userName );
 select*from myBookings;
 
 create view account as(select newUser.username, newuser.firstname, newuser.lastname, newuser.userEmail, newuser.password, newuser.address1, newuser.city, newuser.state, newuser.country, newuser.postalcode from newuser inner join loginDetails on newuser.username=loginDetails.username);
