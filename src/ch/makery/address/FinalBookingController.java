@@ -24,6 +24,8 @@ public class FinalBookingController extends Controller{
 	//Auxiliary data
 	ObservableList<String> aux = FXCollections.observableArrayList("Credit","Debit");
 	int reservationMax;
+	String cardNoAux, ccvAux, nameOnCardAux;
+	
 	
 	//Labels for data from previous scene
 	@FXML
@@ -185,7 +187,7 @@ public class FinalBookingController extends Controller{
 				String sql;
 				
 				//RESERVATION TABLE
-		    	sql = "insert into reservation values ("+reservationMax+",null,'"+mainApp.getCurrentUser().getUsername()+"', 1,null,"+selection.getNo()+",'"+fromPrev.toInt()+"','"+toPrev.toInt()+"','"+today.toInt()+"',1,0)";
+		    	sql = "insert into reservation values ("+reservationMax+",null,'"+mainApp.getCurrentUser().getUsername()+"',"+selection.getNo()+",'"+fromPrev.toInt()+"','"+toPrev.toInt()+"','"+today.toInt()+"')";
 		    	System.out.println("Reservation Query:"+sql);
 		    	mainApp.stmt.executeUpdate(sql);
 		    	
@@ -194,6 +196,12 @@ public class FinalBookingController extends Controller{
 		    			+ " values ('"+mainApp.getCurrentUser().getUsername()+"',"+reservationMax+",'"+payType.getValue()+"',"+cardNum.getText()+","+ccv.getText()+",'"+nameOnCard.getText()+"')";
 		    	System.out.println("Payment Query:"+sql);
 		    	mainApp.stmt.executeUpdate(sql);
+		    	
+				//ROOMSTATUS TABLE
+		    	sql = "insert into roomstatus values ("+selection.getNo()+","+reservationMax+","+fromPrev.toInt()+","+toPrev.toInt()+")";
+		    	System.out.println("Room Status Query:"+sql);
+		    	mainApp.stmt.executeUpdate(sql);
+		    	
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -205,13 +213,48 @@ public class FinalBookingController extends Controller{
 	}
 	
 	public boolean validate() {
-		if((cardNum.getText()==null)||(ccv.getText()==null)||(nameOnCard.getText()==null)) {
-			errorMsg.setText("Please complete all the required fields.");
-			return false;
+		nameOnCardAux=nameOnCard.getText();
+		ccvAux=ccv.getText();
+		cardNoAux=cardNum.getText();
+		String error = "weeee";
+		
+		boolean flag = mainApp.flag;
+		
+		//check if fields are empty
+		if((cardNoAux==null)||(ccvAux==null)||(nameOnCardAux==null)) {
+			if(flag==false) {
+				error="Please complete all the required fields.";
+			}
+			else {
+				error="Veuillez remplir tous les champs obligatoires.";
+			}
+			
+		}
+		
+		//check length
+		else if(ccvAux.length()>11||cardNoAux.length()>30||nameOnCardAux.length()>25) {
+			if(flag==false) {
+				error="Fields too long. Please enter the proper values.";
+			}
+			else {
+				error="Champs trop longs. Veuillez saisir les \nvaleurs appropriées.";
+			}
+		}
+		//check if card Number only contains number
+		else if(!(ccvAux.matches("^[0-9]*$"))||!(cardNoAux.matches("^[0-9]*$"))) {
+			if(flag==false) {
+				error="CVC and Card Number can only contain numbers.";
+			}
+			else {
+				error="Le CVC et le numéro de carte ne peuvent contenir \n que des chiffres.";
+			}
+			
 		}
 		else {
 			return true;
 		}
+		errorMsg.setText(error);
+		return false;
 	}
 	
 	
