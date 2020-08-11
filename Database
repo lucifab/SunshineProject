@@ -106,20 +106,12 @@ FOREIGN KEY (reservationID)
 CREATE TABLE feedback (
     feedbackNo INT NOT NULL auto_increment,
     username VARCHAR(50) NOT NULL DEFAULT ' ',
-    reservationID INT NOT NULL ,
-    roomNo INT NOT NULL ,
     rating INT,
     review TEXT,
     PRIMARY KEY (feedbackNo),
     FOREIGN KEY (userName)
         REFERENCES newUser (userName)
         ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (roomNo)
-        REFERENCES Rooms (roomNo)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (reservationID)
-        REFERENCES reservation (reservationID)
-        ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 /*inserts*/
