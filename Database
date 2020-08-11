@@ -74,7 +74,8 @@ reservationID int not null ,
 paymentType char(10) not null,
 cardNo int(30) not null,
 cvv int not null,
-nameOnCard char(25) not null 
+nameOnCard char(25) not null ,
+   PRIMARY KEY (invoiceNo)
 );
 
 CREATE TABLE cancellation(
