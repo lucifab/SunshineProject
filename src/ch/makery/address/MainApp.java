@@ -244,12 +244,14 @@ public class MainApp extends Application {
             loader.setLocation(MainApp.class.getResource("view/Account.fxml"));
             AnchorPane newScreen = (AnchorPane) loader.load();
             
+            AccountController controller = loader.getController();
+            controller.init(this);
+          
             Scene scene = new Scene(newScreen);
             window.setScene(scene);
             window.show();
 
-             AccountController controller = loader.getController();
-             controller.setMainApp(this);
+             
             
         } 
 	  catch (IOException e) {

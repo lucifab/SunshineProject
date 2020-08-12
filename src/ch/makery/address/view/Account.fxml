@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="334.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.makery.address.AccountController">
    <children>
-      <Label layoutX="241.0" layoutY="14.0" text="Account Details">
+      <Label fx:id="titleAccount" layoutX="241.0" layoutY="14.0" text="Account Details">
          <font>
             <Font size="20.0" />
          </font>
@@ -20,6 +20,6 @@
       <Label fx:id="LNameField" layoutX="137.0" layoutY="180.0" prefHeight="17.0" prefWidth="63.0" text="Last name" />
       <Button fx:id="AddButton" layoutX="359.0" layoutY="250.0" mnemonicParsing="false" onAction="#clickAddButton" prefHeight="31.0" prefWidth="63.0" text="Add" />
       <TextField fx:id="LNameText" layoutX="256.0" layoutY="176.0" />
-      <Button layoutX="475.0" layoutY="253.0" mnemonicParsing="false" onAction="#onBackBtn" prefHeight="25.0" prefWidth="63.0" text="Back" />
+      <Button fx:id="BackButton" layoutX="475.0" layoutY="253.0" mnemonicParsing="false" onAction="#onBackBtn" prefHeight="25.0" prefWidth="63.0" text="Back" />
    </children>
 </AnchorPane>

@@ -1,8 +1,8 @@
 package ch.makery.address;
 
 import javafx.scene.control.TextField;
-
-
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import java.awt.event.ActionEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,6 +22,52 @@ public class AccountController extends Controller {
 	@FXML
 	private TextField LNameText;
 
+	@FXML
+	private Label userField;
+	
+
+	@FXML
+	private Label FNameField;
+	
+
+	@FXML
+	private Label LNameField;
+	
+
+	@FXML
+	private Label titleAccount;
+	
+
+	@FXML
+	private Button AddButton;
+	
+
+	@FXML
+	private Button BackButton;
+	
+	
+	//Initialize
+	
+			public void init(MainApp main) {
+				
+				//Connects to main app
+				this.setMainApp(main);
+				
+				//language change method
+				if(mainApp.flag==true) {
+					titleAccount.setText("Détails du compte");
+					userField.setText("Nom d'utilisateur");
+					FNameField.setText("Prénom");
+					LNameField.setText("Nom de famille");
+					AddButton.setText("Ajouter");
+					BackButton.setText("Arrière");
+				}
+				
+			}
+	
+	
+	
+	
 
 	 public void onBackBtn()
 	 {
@@ -29,6 +75,10 @@ public class AccountController extends Controller {
 			mainApp.showMenu();
 	 }
 	
+	 
+		
+		
+	 
 	
 	  public void clickAddButton(){
 		  
