@@ -32,7 +32,54 @@ public class SignOnController extends Controller{
 	public void init() {		
 		mainApp.connect("root", "");
 	}
-
+	
+	
+	
+	public boolean checkEmptyFields()
+	{
+	  int val=0;
+	  
+		if(FnameTextField.getText().isEmpty())
+		{
+			FnameTextField.setText("VALUE REQUIRED");
+			++val;
+		}
+		if(LnameTextField.getText().isEmpty())
+		{
+			LnameTextField.setText("VALUE REQUIRED");
+			++val;
+		}
+		if(unameTextField.getText().isEmpty())
+		{
+			unameTextField.setText("VALUE REQUIRED");
+			++val;
+		}
+		if(PassTextField.getText().isEmpty())
+		{
+			PassTextField.setText("VALUE REQUIRED");
+			++val;
+		}
+		if(ConfirmPassTextField.getText().isEmpty())
+		{
+			ConfirmPassTextField.setText("VALUE REQUIRED");
+			++val;
+		}
+		if(EmailTextField.getText().isEmpty())
+		{
+			EmailTextField.setText("VALUE REQUIRED");
+			++val;
+		}
+		
+		if(val>0)
+		{
+			return true;
+		}
+		else
+		{
+		return false;
+		}
+	}
+	
 	public void onBackBtn(ActionEvent event)
 	{
 		event.consume();
@@ -42,6 +89,13 @@ public class SignOnController extends Controller{
 	
 	public void clickMe()
 	{
+		
+		if(checkEmptyFields())
+		{
+			System.out.print("Please enter all fields before submitting.");
+		}
+		else
+		{
 		if(PassTextField.getText().equals(ConfirmPassTextField.getText()))
 		{
 
@@ -76,7 +130,7 @@ public class SignOnController extends Controller{
 			ConfirmPassTextField.setText("");
 
 		}	
-
+		}
 	}
 
 	public void clear()

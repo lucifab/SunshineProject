@@ -88,8 +88,12 @@ public class FeedbackController extends Controller{
 	{
 		String rev= issue + ":  " + commentBox.getText();
 
-		System.out.print("Submitting the feedback ...");
-
+		if(commentBox.getText().isEmpty())
+		{
+			commentBox.setText("Please enter the feedback before submitting");
+		}
+		else
+		{
 		try
 		{
 			System.out.println("\n\nCreating statement...\n\n");
@@ -115,7 +119,7 @@ public class FeedbackController extends Controller{
 
 
 		commentBox.setText("");
-
+		}
 
 	}
 

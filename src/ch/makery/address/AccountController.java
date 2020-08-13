@@ -66,8 +66,6 @@ public class AccountController extends Controller {
 			}
 	
 	
-	
-	
 
 	 public void onBackBtn()
 	 {
@@ -75,14 +73,45 @@ public class AccountController extends Controller {
 			mainApp.showMenu();
 	 }
 	
-	 
-		
-		
+		public boolean checkEmptyFields()
+		{
+		  int val=0;
+		  
+			if(UserText.getText().isEmpty())
+			{
+				UserText.setText("VALUE REQUIRED");
+				++val;
+			}
+			if(FNameText.getText().isEmpty())
+			{
+				FNameText.setText("VALUE REQUIRED");
+				++val;
+			}
+			if(LNameText.getText().isEmpty())
+			{
+				LNameText.setText("VALUE REQUIRED");
+				++val;
+			}
+			
+			if(val>0)
+			{
+				return true;
+			}
+			else
+			{
+			return false;
+			}
+		}
 	 
 	
 	  public void clickAddButton(){
 		  
-		  
+		  if(checkEmptyFields())
+		  {
+			  System.out.print("Please enter all fields before submitting.");
+		  }
+		  else
+		  {
 			try
 			{
 			System.out.println("\n\nCreating statement...\n\n");
@@ -106,6 +135,9 @@ public class AccountController extends Controller {
 			}
 
 			clear();
+			
+		  }
+			
 	  }
 
 

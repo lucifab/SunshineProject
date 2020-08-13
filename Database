@@ -111,8 +111,7 @@ CREATE TABLE feedback (
     PRIMARY KEY (feedbackNo),
     FOREIGN KEY (userName)
         REFERENCES newUser (userName)
-        ON UPDATE CASCADE ON DELETE CASCADE,
-);
+        ON UPDATE CASCADE ON DELETE CASCADE);
 
 /*inserts*/
 
@@ -149,26 +148,8 @@ select * from Availablerooms order by roomNo;
 
 
 create view c as (select rooms.roomType,rooms.roomLocation, rooms.roomNo, rooms.noOfBedrooms,rooms.noOfWashrooms, reservation.userName from rooms inner join reservation on rooms.roomNo = reservation.roomNo);
-select*from myBookings;
 
 create view account as(select newUser.username, newuser.firstname, newuser.lastname, newuser.userEmail, newuser.password, newuser.address1, newuser.city, newuser.state, newuser.country, newuser.postalcode from newuser inner join loginDetails on newuser.username=loginDetails.username);
 select * from account;
 
-create view reservationconfirmation as(select loginDetails.userName,reservation.roomno,reservation.checkin,reservation.checkout, reservation.adults,reservation.children from logindetails inner join reservation on logindetails.username = reservation.username);
-select * from reservationConfirmation;
-
 create view allBookings as (SELECT * FROM reservation NATURAL JOIN rooms);
-
-
-
-drop table feedback;
-drop table cancellation;
-drop table payments;
-drop table reservation;
-drop table packages;
-drop table food;
-drop table roomStatus;
-drop table rooms;
-drop table loginDetails;
-drop tables newUser;
-drop database SunshineHotel;
